@@ -2,7 +2,7 @@
 <h3 align="center">A passionate Full Stack Developer & Machine Learning Enthusiast</h3>
 
 - 🌱 I’m currently learning **MERN Stack, DevOps, and AI integrations**
-- 👨‍💻 All of my projects are available at [My Portfolio](https://portfolio-himanshu-kumar-jha.onrender.com/)
+- 👨‍💻 All of my projects are available at [My Portfolio](https://himanshukumarjha.netlify.app/)
 - 💬 Ask me about **Node.js, ML, Computer Vision, React, Docker, and AWS**
 - 📫 How to reach me **himanshukrjha004@gmail.com**
 - ⚡ Fun fact: I blend technical expertise in AI, machine learning, and full-stack development with creativity, whether it's building innovative systems or crafting engaging, personalized content for both professional and personal projects.
