@@ -365,7 +365,7 @@
                         <tr>
                             <td>Semester 1</td>
                             <td>7.6</td>
-                            <td rowspan="5">8.65</td>
+                            <td rowspan="6">8.84</td>
                         </tr>
                         <tr>
                             <td>Semester 2</td>
@@ -383,6 +383,10 @@
                             <td>Semester 5</td>
                             <td>9.17</td>
                         </tr>
+                        <tr>
+                            <td>Semester 6</td>
+                            <td>9.59</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -391,11 +395,11 @@
             <div class="rank-info">
                 <div class="rank-card">
                     <div class="rank-label">University Rank</div>
-                    <div class="rank-value">317</div>
+                    <div class="rank-value">298</div>
                 </div>
                 <div class="rank-card">
                     <div class="rank-label">Department Rank</div>
-                    <div class="rank-value">35</div>
+                    <div class="rank-value">27</div>
                 </div>
             </div>
 
@@ -495,12 +499,12 @@
         
         // Data for SGPA and CGPA
         const semesterData = {
-            labels: ['Semester 1', 'Semester 2', 'Semester 3', 'Semester 4', 'Semester 5'],
+            labels: ['Semester 1', 'Semester 2', 'Semester 3', 'Semester 4', 'Semester 5', 'Semester 6'],
             datasets: [
                 {
                     label: 'SGPA',
                     type: 'line',
-                    data: [7.6, 7.45, 9.64, 9.27,9.17],
+                    data: [7.6, 7.45, 9.64, 9.27,9.17,9.59],
                     backgroundColor: 'rgba(74, 144, 226, 0.1)',
                     borderColor: '#4A90E2',
                     borderWidth: 3,
@@ -513,7 +517,7 @@
                 },
                 {
                     label: 'CGPA',
-                    data: [7.6, 7.521, 8.250, 8.51,8.65],
+                    data: [7.6, 7.521, 8.250, 8.51,8.65,8.84],
                     type: 'line',
                     borderColor: '#357ABD',
                     backgroundColor: 'rgba(53, 122, 189, 0.1)',
