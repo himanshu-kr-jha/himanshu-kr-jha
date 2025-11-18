@@ -14,7 +14,7 @@
     <title>Himanshu Kumar Jha | Software Engineer Portfolio</title>
     <link rel="icon" href="logo-color.svg">
     <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -94,7 +94,7 @@
             }
         }
 
-        .comet {
+        /* .comet {
             position: absolute;
             width: 220px;
             height: 2px;
@@ -104,9 +104,9 @@
             transform: translateX(-260px) rotate(-20deg);
             animation-timing-function: cubic-bezier(.2, .8, .2, 1);
             pointer-events: none;
-        }
+        } */
 
-        @keyframes comet-fly {
+        /* @keyframes comet-fly {
             0% {
                 transform: translateX(-260px) translateY(0) rotate(-20deg);
                 opacity: 0;
@@ -124,7 +124,7 @@
                 transform: translateX(calc(100vw + 260px)) translateY(-200px) rotate(-20deg);
                 opacity: 0;
             }
-        }
+        } */
 
         /* Floating particles */
         .particle {
@@ -677,6 +677,37 @@
     <section class="projects" id="projects">
         <h2 class="section-title">Featured Projects</h2>
         <div class="project-content">
+            <a href="https://github.com/himanshu-kr-jha/formerPose_implementation" target="_blank" class="project-box">
+                <i class="fas fa-cubes"></i>
+                <h3>FormerPose – 6D Pose Estimation</h3>
+                <p>Reproduced the FormerPose (2024) research model for RGB-D based 6D object pose estimation, achieving
+                    0.0667 m mean ADD on LINEMOD with multi-scale Transformers, point-cloud fusion and ICP refinement.
+                </p>
+
+                <div class="badges">
+                    <span class="badge">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pytorch/pytorch-original.svg"
+                            alt="PyTorch"> PyTorch
+                    </span>
+                    <span class="badge">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/opencv/opencv-original.svg"
+                            alt="OpenCV"> OpenCV
+                    </span>
+                    <span class="badge">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
+                            alt="Python"> Python
+                    </span>
+                    <span class="badge">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg"
+                            alt="NumPy"> Point Clouds
+                    </span>
+                    <span class="badge">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2533/2533187.png" alt="AI"
+                            style="width:16px;height:16px;"> Transformers
+                    </span>
+                </div>
+            </a>
+
             <a href="https://etapredict.onrender.com" target="_blank" class="project-box">
                 <i class="fas fa-shipping-fast"></i>
                 <h3>ETA Predict</h3>
@@ -690,7 +721,9 @@
                     <span class="badge"><img
                             src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tensorflow/tensorflow-original.svg"
                             alt="TF"> ML</span>
-                    <span class="badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg" /> GCP</span>
+                    <span class="badge"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg" />
+                        GCP</span>
                     <span class="badge"><img
                             src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg"
                             alt="Docker"> Docker</span>
@@ -738,9 +771,8 @@
                 <p>Video meeting platform with real-time conferencing, screen share and chat.</p>
                 <div class="badges">
                     <span class="badge"><img
-                            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original-wordmark.svg"
-          "
-                            alt="Express"> Express</span>
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original-wordmark.svg" "
+                            alt=" Express"> Express</span>
                     <span class="badge"><img
                             src="https://raw.githubusercontent.com/devicons/devicon/master/icons/socketio/socketio-original.svg"
                             alt="Socket.IO"> Socket.IO</span>
@@ -757,7 +789,8 @@
                 <p>Automated video pipeline converting movies to grayscale using AWS Lambda, ECS and S3.</p>
                 <div class="badges">
                     <span class="badge"><img
-                        src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" /> AWS</span>
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" />
+                        AWS</span>
                     <span class="badge"><img
                             src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg"
                             alt="Docker"> Docker</span>
@@ -792,7 +825,9 @@
                 <h3>Automobile Failure Detection</h3>
                 <p>Predictive ML model for automobile failures to reduce maintenance costs through analytics.</p>
                 <div class="badges">
-                    <span class="badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg" /> Scikit-learn</span>
+                    <span class="badge"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg" />
+                        Scikit-learn</span>
                     <span class="badge"><img
                             src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pandas/pandas-original.svg"
                             alt="Pandas"> Pandas</span>
@@ -811,12 +846,11 @@
                             src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg"
                             alt="Node"> Node</span>
                     <span class="badge"><img
-                        src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" />
-                            AWS</span>
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" />
+                        AWS</span>
                     <span class="badge"><img
-                            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original-wordmark.svg"
-          "
-                            alt="Express"> Express</span>
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original-wordmark.svg" "
+                            alt=" Express"> Express</span>
                 </div>
             </a>
         </div>
@@ -925,9 +959,10 @@
                         <span class="badge">TensorFlow</span>
                         <span class="badge">Docker</span>
 
-                    </div></p>
+                    </div>
+                    </p>
                 </div>
-                
+
                 <div
                     style="border-radius: 2rem; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #0f0f23;">
                     <img src="accenture.png" alt="Accenture Logo" style="width: 300px; height: 180px;">
@@ -944,11 +979,13 @@
                     <p>Mentored students in academic and career development, focusing on requirements analysis and youth
                         guidance.</p>
                     </p>
-                    <p><div class="badges">
+                    <p>
+                    <div class="badges">
                         <span class="badge">Computer Vision</span>
                         <span class="badge">AWS</span>
                         <span class="badge">Machine Learning</span>
-                    </div></p>
+                    </div>
+                    </p>
                 </div>
                 <div
                     style="border-radius: 2rem; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #0f0f23;">
