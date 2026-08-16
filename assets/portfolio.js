@@ -438,8 +438,13 @@
     var handsOff = 0;
 
     /* The line the pinned bar sits above: a section counts as "current" once
-       its top crosses this. Matches the scroll-margin-top in blueprint.css. */
+       its top crosses this. Matches the scroll-margin-top in blueprint.css.
+       TOLERANCE matters because clicking an index link lands a section on
+       exactly that value, and sub-pixel rounding then leaves `top` a hair
+       above it — which read as the rail pointing at the previous section
+       after every jump. */
     var MARKER = 140;
+    var TOLERANCE = 8;
 
     /* Where we are as a fraction across the whole index — 2.4 means "40% of
        the way through section 02". This is what lets the strip glide with the
@@ -447,8 +452,15 @@
     function position() {
       var index = 0;
       sections.forEach(function (section, i) {
-        if (section && section.getBoundingClientRect().top <= MARKER) index = i;
+        if (section && section.getBoundingClientRect().top <= MARKER + TOLERANCE) index = i;
       });
+
+      /* The last section can never scroll its top to the marker — there is no
+         page left below it — so without this the rail stays on the
+         second-to-last while the last one fills the screen. */
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+        return sections.length - 1;
+      }
 
       var current = sections[index];
       var next = sections[index + 1];
