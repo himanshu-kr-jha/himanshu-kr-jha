@@ -300,32 +300,6 @@ textarea.input { min-height: 90px; resize: vertical; }
    which px silently ignores. Raise this to enlarge the whole sheet. */
 html { font-size: 100%; }
 html { scroll-behavior: smooth; }
-
-/* ── One section, one screen ──────────────────────────────────────────────
-   Every section is at least a viewport tall and its top is a snap point, so
-   scrolling settles with a single section heading at the fold rather than
-   catching the next one at the bottom edge.
-
-   `proximity`, not `mandatory`: three of these sections are legitimately
-   taller than a screen, and mandatory snapping would refuse to let you stop
-   part-way through reading one. Proximity pulls to the nearest section start
-   when you are close to it and otherwise leaves scrolling alone — which is
-   what keeps it continuous rather than paged. */
-html { scroll-snap-type: y proximity; }
-
-.sheet-main > section {
-  min-height: 100vh;
-  min-height: 100svh;   /* stable on mobile, where 100vh includes browser chrome */
-  scroll-snap-align: start;
-  /* Content starts near the top of its screen rather than centring in it.
-     Centring a short section pushes its heading a third of the way down and
-     the empty band above reads as a page that hasn't finished loading; with
-     the slack below instead, it reads as breathing room. */
-  display: grid;
-  align-content: start;
-  padding-top: clamp(16px, 5vh, 56px);
-}
-.sheet-foot { scroll-snap-align: none; }
 body { background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); }
 a { color: var(--color-accent-700); text-underline-offset: 3px; }
 a:hover { color: var(--color-accent-800); }
@@ -742,10 +716,8 @@ body {
   .rail-spec { display: none; }
   .meta-mobile { display: inline; }
 
-  /* Anchor jumps and snap points must land below the pinned bar, not behind
-     it — and a section's own screen is that much shorter. */
+  /* Anchor jumps must land below the pinned bar, not behind it. */
   .sheet-main > section, .note-main > article { scroll-margin-top: 140px; }
-  .sheet-main > section { min-height: calc(100svh - 140px); }
 
   /* Touch targets: 32px is comfortable with a mouse and cramped with a thumb.
      Apple's HIG and WCAG 2.5.8 both land at 44. */
