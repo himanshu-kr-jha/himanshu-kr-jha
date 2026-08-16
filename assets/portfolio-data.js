@@ -384,6 +384,38 @@ window.PORTFOLIO_DATA = {
     // it's the first thing someone deciding whether to write to you will read.
     availability: "Available for freelance now · Full-time from late 2026",
     heading: "Let's build something that ships",
-    body: "Open to full-time software engineering roles from late 2026, and freelance work now. Backend, computer vision, cloud infrastructure — or anything that needs a model turned into a product."
+    body: "Open to full-time software engineering roles from late 2026, and freelance work now. Backend, computer vision, cloud infrastructure — or anything that needs a model turned into a product.",
+
+    // Drafts for the "Talk about work like this" and "Reply by email" buttons.
+    // The visitor's mail app opens with this already written, so they are not
+    // staring at an empty message — which is most of why people don't send one.
+    // {project} and {note} are filled in with whatever page they came from.
+    // Written in their voice, not yours. Keep the prompts few; every extra
+    // blank line is another thing someone has to answer before they send.
+    enquiry: {
+      subject: "About your {project} work",
+      body: [
+        "Hi Himanshu,",
+        "",
+        "I just read your {project} case study, and I'd like to talk about something similar.",
+        "",
+        "What we're working on:",
+        "",
+        "",
+        "Best way and time to reach me:",
+        "",
+        ""
+      ].join("\n")
+    },
+    noteReply: {
+      subject: "Re: {note}",
+      body: [
+        "Hi Himanshu,",
+        "",
+        "I just read \"{note}\" — ",
+        "",
+        ""
+      ].join("\n")
+    }
   }
 };

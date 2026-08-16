@@ -113,10 +113,21 @@
     }
   }
 
+  /* Opens with the message already drafted, so the visitor isn't handed a
+     blank compose window — and the address is printed beside it, because a
+     mailto: does nothing at all for anyone without a mail app configured. */
   var contact = document.getElementById("cs-contact");
   if (contact) {
-    contact.setAttribute("href", "mailto:" + (PROFILE.email || "")
-      + "?subject=" + encodeURIComponent("About your " + project.title + " work"));
+    contact.setAttribute("href", window.DOM.mailtoDraft(
+      PROFILE.email, (DATA.contact || {}).enquiry, { project: project.title }
+    ));
+  }
+  var contactNote = document.getElementById("cs-contact-note");
+  if (contactNote && PROFILE.email) {
+    contactNote.textContent = "";
+    contactNote.appendChild(document.createTextNode("Or write to "));
+    contactNote.appendChild(el("a", { href: "mailto:" + PROFILE.email, text: PROFILE.email }));
+    contactNote.appendChild(document.createTextNode(" directly."));
   }
 
   set("foot-credit", "© " + new Date().getFullYear() + " " + (PROFILE.name || ""));

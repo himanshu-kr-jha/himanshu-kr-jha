@@ -40,6 +40,24 @@
 
   function pad(n) { return String(n).padStart(2, "0"); }
 
+  /* Builds a mailto: with the message already written, from a template in
+     portfolio-data.js. Returns "" without an address, so a caller can tell the
+     difference between "no link" and "a link that goes nowhere". */
+  function mailtoDraft(email, template, fills) {
+    if (!email) return "";
+    var subject = (template && template.subject) || "";
+    var body = (template && template.body) || "";
+    Object.keys(fills || {}).forEach(function (key) {
+      var token = new RegExp("\\{" + key + "\\}", "g");
+      subject = subject.replace(token, fills[key]);
+      body = body.replace(token, fills[key]);
+    });
+    var query = [];
+    if (subject) query.push("subject=" + encodeURIComponent(subject));
+    if (body) query.push("body=" + encodeURIComponent(body));
+    return "mailto:" + email + (query.length ? "?" + query.join("&") : "");
+  }
+
   /* On narrow screens the rail index is a horizontal strip; if the current
      entry sits past its right edge you land on a page with no visible marker
      of where you are. Centre it once, on load. */
@@ -96,6 +114,6 @@
 
   window.DOM = {
     el: el, corners: corners, pad: pad, mount: mount, append: append,
-    revealCurrent: revealCurrent, reveal: reveal
+    revealCurrent: revealCurrent, reveal: reveal, mailtoDraft: mailtoDraft
   };
 })(window);

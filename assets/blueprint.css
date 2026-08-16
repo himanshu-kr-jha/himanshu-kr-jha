@@ -647,6 +647,12 @@ body {
   display: flex; gap: 12px; flex-wrap: wrap;
 }
 .note-actions .btn { justify-content: flex-start; }
+/* The address in plain text under the button. A mailto: does nothing at all
+   for a visitor with no mail app configured, and without this they have no
+   way to reach him from the page they are actually on. */
+.mail-fallback {
+  margin: 14px 0 0; font-size: 0.875rem; color: var(--color-neutral-800);
+}
 
 /* — no-JS fallback — */
 .noscript-note {
@@ -729,6 +735,10 @@ body {
   .row-links a, .gh-head a, .contact-links a, .sheet-foot a, .note-summary + a {
     display: inline-flex; align-items: center; min-height: 44px;
   }
+  /* This one sits inside a sentence, so it can't become a flex box without
+     breaking the line. Padding grows the touch target and the negative margin
+     gives the space back to the layout, leaving the text exactly where it was. */
+  .mail-fallback a { padding-block: 11px; margin-block: -11px; }
 
   .sheet-main, .note-main { padding: 26px 22px 48px; }
   .exp { grid-template-columns: minmax(0, 1fr); gap: 14px; padding: 20px; }

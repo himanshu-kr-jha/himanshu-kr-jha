@@ -68,8 +68,16 @@
 
   var reply = document.getElementById("note-reply");
   if (reply) {
-    reply.setAttribute("href", "mailto:" + (PROFILE.email || "")
-      + "?subject=" + encodeURIComponent("Re: " + (note.title || "your note")));
+    reply.setAttribute("href", window.DOM.mailtoDraft(
+      PROFILE.email, (DATA.contact || {}).noteReply, { note: note.title || "your note" }
+    ));
+  }
+  var replyNote = document.getElementById("note-reply-note");
+  if (replyNote && PROFILE.email) {
+    replyNote.textContent = "";
+    replyNote.appendChild(document.createTextNode("Or write to "));
+    replyNote.appendChild(el("a", { href: "mailto:" + PROFILE.email, text: PROFILE.email }));
+    replyNote.appendChild(document.createTextNode(" directly."));
   }
 
   set("foot-credit", "© " + new Date().getFullYear() + " " + (PROFILE.name || ""));
