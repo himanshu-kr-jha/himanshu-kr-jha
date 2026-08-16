@@ -73,4 +73,9 @@
   }
 
   set("foot-credit", "© " + new Date().getFullYear() + " " + (PROFILE.name || ""));
+
+  window.DOM.reveal([
+    ".note-meta", ".note-h1", ".note-lede", ".note-tags",
+    ".note-body p", ".note-actions", ".sheet-foot"
+  ]);
 })(window, document);

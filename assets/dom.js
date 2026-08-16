@@ -58,8 +58,44 @@
     return node;
   }
 
+  /* ── Scroll reveal ──────────────────────────────────────────────────────
+     Blocks rise into place as they enter the viewport, and reset once they
+     have fully left, so scrolling back up plays them again rather than
+     landing on a page that has already finished moving.
+
+     The hidden state is applied by a class this function adds, never by the
+     stylesheet alone — with JavaScript off or unsupported, nothing is ever
+     hidden. Anyone who has asked their system for less motion is skipped
+     entirely, before a single element is touched. */
+  function reveal(selectors) {
+    var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (calm || typeof IntersectionObserver !== "function") return;
+
+    document.documentElement.classList.add("reveal-ready");
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        /* Two thresholds, deliberately asymmetric: a block arrives once it is
+           meaningfully on screen, but only resets when it is completely gone,
+           so nothing fades while you can still read it. */
+        if (entry.intersectionRatio >= 0.12) entry.target.classList.add("is-in");
+        else if (!entry.isIntersecting) entry.target.classList.remove("is-in");
+      });
+    }, { threshold: [0, 0.12] });
+
+    selectors.forEach(function (selector) {
+      var nodes = document.querySelectorAll(selector);
+      Array.prototype.forEach.call(nodes, function (node, i) {
+        node.setAttribute("data-reveal", "");
+        /* Capped so a long list staggers without the last item lagging. */
+        node.style.setProperty("--reveal-i", String(Math.min(i, 5)));
+        observer.observe(node);
+      });
+    });
+  }
+
   window.DOM = {
     el: el, corners: corners, pad: pad, mount: mount, append: append,
-    revealCurrent: revealCurrent
+    revealCurrent: revealCurrent, reveal: reveal
   };
 })(window);

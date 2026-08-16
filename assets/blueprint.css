@@ -307,6 +307,32 @@ a:hover { color: var(--color-accent-800); }
 @keyframes sheetIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 @keyframes scan { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
 
+/* ── Scroll reveal ───────────────────────────────────────────────────────
+   The hidden state hangs off .reveal-ready, which assets/dom.js adds only
+   when it is going to drive the animation. No script, no class, nothing
+   hidden — the page renders exactly as it does now. */
+.reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity .6s cubic-bezier(.22, .61, .36, 1),
+    transform .6s cubic-bezier(.22, .61, .36, 1);
+  transition-delay: calc(var(--reveal-i, 0) * 65ms);
+}
+.reveal-ready [data-reveal].is-in { opacity: 1; transform: none; }
+
+/* A drafting sheet is drawn line by line, so section rules extend rather
+   than fade — the one flourish that belongs to this design specifically. */
+.reveal-ready .sec-head[data-reveal]::after,
+.reveal-ready .cs-section-head[data-reveal]::after {
+  content: ""; position: absolute; left: 0; bottom: -1px; height: 1px;
+  width: 0; background: var(--color-accent);
+  transition: width .9s cubic-bezier(.22, .61, .36, 1) .15s;
+}
+.reveal-ready .sec-head[data-reveal].is-in::after,
+.reveal-ready .cs-section-head[data-reveal].is-in::after { width: 100%; }
+.sec-head, .cs-section-head { position: relative; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
@@ -322,15 +348,14 @@ body {
   background-size: 34px 34px;
 }
 
-/* — the sheet: content column beside a fixed index rail. Capped at the rail
-     (200) plus the main column's own max-width (1180) and centred, so a wide
-     monitor gets even margins instead of everything shunted left. — */
+/* — the sheet: content column beside a fixed index rail, running the full
+     width of the display. Line length is held by the ch-based caps on the
+     prose itself, so the sheet can fill the screen without paragraphs
+     stretching past what is comfortable to read. — */
 .sheet {
   display: grid;
   grid-template-columns: 224px minmax(0, 1fr);
   min-height: 100vh;
-  max-width: 1404px;
-  margin-inline: auto;
 }
 
 .rail {
@@ -374,7 +399,7 @@ body {
 .rail-index a.is-current { border-left-color: var(--color-accent); }
 .rail-foot { margin-top: auto; justify-content: flex-start; }
 
-.sheet-main { padding: 34px 40px 60px; max-width: 1180px; }
+.sheet-main { padding: 34px 40px 60px; }
 .section { margin-bottom: 46px; }
 
 /* — section headings — */
@@ -596,7 +621,7 @@ body {
 }
 
 /* — the note sheet (blog.html) — */
-.note-main { padding: 34px 40px 60px; max-width: 1000px; }
+.note-main { padding: 34px 40px 60px; max-width: 92ch; }
 .note-meta {
   font-size: 0.8125rem; letter-spacing: .14em; text-transform: uppercase;
   color: var(--color-neutral-800); margin-bottom: 16px;
@@ -624,6 +649,12 @@ body {
 .noscript-note {
   margin: 0; padding: 14px 18px; font-size: 0.9375rem; line-height: 1.6;
   border: 1px solid var(--color-accent); background: var(--color-accent-100); color: var(--color-accent-800);
+}
+
+/* Wide displays: the column is full-bleed now, so give the edges more air. */
+@media (min-width: 1600px) {
+  .sheet-main { padding: 40px 64px 72px; }
+  .sheet { grid-template-columns: 260px minmax(0, 1fr); }
 }
 
 /* ── Responsive: the rail unpins and the two-column plates stack ────────── */

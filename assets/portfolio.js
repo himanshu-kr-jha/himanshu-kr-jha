@@ -513,6 +513,25 @@
     update();
   }
 
+  /* Which blocks rise into view. Grouped so each list staggers from its own
+     first item rather than continuing a count from the section above. */
+  function revealSections() {
+    window.DOM.reveal([
+      ".hero-kicker", ".hero-title", ".hero-pitch", ".hero-summary", ".hero-actions",
+      ".hero-grid .spec-card",
+      ".sec-head",
+      ".hero-project",
+      ".rows .row",
+      ".exp-list .exp",
+      ".specs-table tr",
+      ".notes-grid .note-card",
+      ".gh-plate",
+      ".ask-panel",
+      "#contact > div", ".contact-form",
+      ".sheet-foot"
+    ]);
+  }
+
   renderHero();
   renderWork();
   renderProjects();
@@ -524,4 +543,5 @@
   renderContact();
   renderFooter();
   trackSections();
+  revealSections();
 })(window, document);

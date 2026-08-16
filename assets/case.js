@@ -120,4 +120,11 @@
   }
 
   set("foot-credit", "© " + new Date().getFullYear() + " " + (PROFILE.name || ""));
+
+  window.DOM.reveal([
+    ".note-meta", ".note-h1", ".note-lede", ".note-tags",
+    ".cs-metrics .cs-metric",
+    ".cs-section-head", ".cs-section p", ".cs-bullets li",
+    ".note-actions", ".sheet-foot"
+  ]);
 })(window, document);
