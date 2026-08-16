@@ -155,8 +155,8 @@ figcaption {
 .btn svg { display: block; }
 .btn:disabled { opacity: 0.45; cursor: not-allowed; }
 .btn-primary { background: var(--color-accent-700); color: var(--color-bg); }
-.btn-primary:hover { background: var(--color-accent-800); }
-.btn-primary:active { background: var(--color-accent-900); }
+.btn-primary:hover { background: var(--color-accent-800); color: var(--color-bg); }
+.btn-primary:active { background: var(--color-accent-900); color: var(--color-bg); }
 .btn-secondary { border-color: var(--color-divider); }
 .btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
 .btn-secondary:active { background: color-mix(in srgb, var(--color-text) 14%, transparent); }
@@ -302,7 +302,10 @@ html { font-size: 100%; }
 html { scroll-behavior: smooth; }
 body { background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); }
 a { color: var(--color-accent-700); text-underline-offset: 3px; }
-a:hover { color: var(--color-accent-800); }
+/* Scoped away from .btn: a button carries its own colour pair, and this rule
+   outranks .btn-primary on specificity — it was repainting the label the exact
+   accent-800 that .btn-primary:hover paints behind it, so the text vanished. */
+a:not(.btn):hover { color: var(--color-accent-800); }
 
 @keyframes sheetIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 @keyframes scan { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
