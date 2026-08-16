@@ -2,1169 +2,200 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Himanshu's Software Engineering Portfolio">
-    <meta name="description"
-        content="Himanshu Kumar Jha's software engineering portfolio showcasing web development projects, machine learning models, and more.">
-    <meta property="og:image"
-        content="https://raw.githubusercontent.com/himanshu-kr-jha/portfolio-himanshu/refs/heads/main/thumbnail.png">
-    <meta property="og:url" content="https://portfolio-himanshu-kumar-jha.onrender.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <title>Himanshu Kumar Jha | Software Engineer Portfolio</title>
-    <link rel="icon" href="logo-color.svg">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            text-decoration: none;
-            border: none;
-            outline: none;
-        }
-
-        html {
-            font-size: 62.5%;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: radial-gradient(ellipse at center, #071023 0%, #0f1724 60%, #08101a 100%);
-            color: white;
-            line-height: 1.6;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Animated Background */
-        .stars-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            opacity: 0.7;
-            filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.25));
-        }
-
-        .star.small {
-            width: 2px;
-            height: 2px;
-        }
-
-        .star.medium {
-            width: 3px;
-            height: 3px;
-        }
-
-        .star.large {
-            width: 4px;
-            height: 4px;
-        }
-
-        /* smooth twinkle using opacity animation (durations set inline for variety) */
-        @keyframes twinkle {
-            0% {
-                opacity: 0.2;
-                transform: scale(0.9);
-            }
-
-            50% {
-                opacity: 1;
-                transform: scale(1.15);
-            }
-
-            100% {
-                opacity: 0.2;
-                transform: scale(0.9);
-            }
-        }
-
-        /* .comet {
-            position: absolute;
-            width: 220px;
-            height: 2px;
-            background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 30%, rgba(100, 255, 218, 0.9) 60%, rgba(255, 255, 255, 0.2) 100%);
-            border-radius: 50px;
-            box-shadow: 0 0 12px rgba(100, 255, 218, 0.3);
-            transform: translateX(-260px) rotate(-20deg);
-            animation-timing-function: cubic-bezier(.2, .8, .2, 1);
-            pointer-events: none;
-        } */
-
-        /* @keyframes comet-fly {
-            0% {
-                transform: translateX(-260px) translateY(0) rotate(-20deg);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 1;
-            }
-
-            90% {
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateX(calc(100vw + 260px)) translateY(-200px) rotate(-20deg);
-                opacity: 0;
-            }
-        } */
-
-        /* Floating particles */
-        .particle {
-            position: absolute;
-            background: rgba(100, 255, 218, 0.06);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: float 20s infinite linear;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 0.5;
-            }
-
-            90% {
-                opacity: 0.5;
-            }
-
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* Header Styles */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 9%;
-            background: rgba(7, 10, 20, 0.5);
-            backdrop-filter: blur(10px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        header.scrolled {
-            background: rgba(7, 10, 20, 0.9);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .logo {
-            font-size: 2.8rem;
-            color: #64ffda;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-            color: #4fd1c7;
-        }
-
-        nav a {
-            font-size: 1.6rem;
-            color: white;
-            margin-left: 3rem;
-            font-weight: 500;
-            transition: 0.3s ease;
-            position: relative;
-            padding: 0.5rem 0;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background: #64ffda;
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::after,
-        nav a.active::after {
-            width: 100%;
-        }
-
-        nav a:hover,
-        nav a.active {
-            color: #64ffda;
-        }
-
-        @media(max-width:995px) {
-            nav {
-                position: absolute;
-                display: none;
-                top: 0;
-                right: 0;
-                width: 40%;
-            }
-        }
-
-        /* Section Styles */
-        section {
-            min-height: 100vh;
-            padding: 8rem 9% 5rem;
-            position: relative;
-        }
-
-        /* Home Section */
-        .home {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 6rem;
-            text-align: center;
-        }
-
-        .home-content {
-            max-width: 80rem;
-        }
-
-        .home-content h1 {
-            font-size: 5.5rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, #64ffda 0%, #4fd1c7 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .home-content h1 span {
-            color: #64ffda;
-        }
-
-        .typing-text {
-            font-size: 3.2rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-        }
-
-        .typing-text span {
-            position: relative;
-            color: #64ffda;
-        }
-
-        .typing-text span::before {
-            content: "Software Engineer";
-            animation: words 15s infinite;
-        }
-
-        .typing-text span::after {
-            content: "";
-            position: absolute;
-            width: calc(100% + 8px);
-            height: 100%;
-            border-left: 3px solid #64ffda;
-            right: -8px;
-            animation: cursor 0.8s infinite;
-        }
-
-        .home-content p {
-            font-size: 1.8rem;
-            margin-bottom: 3rem;
-            color: #a8b2d1;
-            line-height: 1.8;
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .social-icons a {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 5rem;
-            height: 5rem;
-            background: rgba(100, 255, 218, 0.06);
-            border: 2px solid rgba(100, 255, 218, 0.06);
-            font-size: 2.2rem;
-            border-radius: 50%;
-            transition: 0.3s ease;
-            color: #64ffda;
-        }
-
-        .social-icons a:hover {
-            background: rgba(100, 255, 218, 0.12);
-            border-color: #64ffda;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.08);
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1.5rem 3.5rem;
-            background: transparent;
-            border: 2px solid #64ffda;
-            border-radius: 0.5rem;
-            font-size: 1.6rem;
-            color: #64ffda;
-            font-weight: 600;
-            transition: 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            margin: 0.5rem;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(100, 255, 218, 0.06);
-            transition: 0.3s ease;
-            z-index: -1;
-        }
-
-        .btn:hover::before {
-            left: 0;
-        }
-
-        .btn:hover {
-            color: white;
-            box-shadow: 0 0 20px rgba(100, 255, 218, 0.15);
-            transform: translateY(-2px);
-        }
-
-        .btn.show-more {
-            background: rgba(100, 255, 218, 0.06);
-            margin-top: 3rem;
-        }
-
-        /* Section Headers */
-        .section-title {
-            font-size: 4rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 5rem;
-            color: #64ffda;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -1rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 8rem;
-            height: 3px;
-            background: linear-gradient(135deg, #64ffda 0%, #4fd1c7 100%);
-        }
-
-        /* Projects Section */
-        .projects {
-            background: transparent;
-        }
-
-        .project-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
-            gap: 3rem;
-        }
-
-        .project-box {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(8px);
-            padding: 2.2rem;
-            border-radius: 1.2rem;
-            border: 1px solid rgba(100, 255, 218, 0.06);
-            transition: 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            color: white;
-        }
-
-        .project-box.hidden {
-            display: none;
-        }
-
-        .project-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #64ffda, transparent);
-            transform: translateX(-100%);
-            transition: 0.6s ease;
-        }
-
-        .project-box:hover::before {
-            transform: translateX(100%);
-        }
-
-        .project-box:hover {
-            transform: translateY(-6px);
-            border-color: #64ffda;
-            box-shadow: 0 20px 40px rgba(100, 255, 218, 0.04);
-        }
-
-        .project-box i {
-            font-size: 3.2rem;
-            color: #64ffda;
-            margin-bottom: 1rem;
-        }
-
-        .project-box h3 {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .project-box p {
-            font-size: 1.5rem;
-            color: #c0c8d8;
-            line-height: 1.6;
-        }
-
-        /* Badges */
-        .badges {
-            margin-top: 1.2rem;
-            display: flex;
-            gap: 0.6rem;
-            flex-wrap: wrap;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: .6rem;
-            padding: .4rem .8rem;
-            font-size: 1.2rem;
-            border-radius: 999px;
-            background: rgba(100, 255, 218, 0.06);
-            color: #dffbf0;
-            border: 1px solid rgba(100, 255, 218, 0.06);
-        }
-
-        .badge img {
-            width: 1.6rem;
-            height: 1.6rem;
-            object-fit: contain;
-            filter: brightness(1.2);
-        }
-
-        /* Skills Section */
-        .skills-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-            gap: 3rem;
-        }
-
-        .skill-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(8px);
-            padding: 2.4rem;
-            border-radius: 1.2rem;
-            border: 1px solid rgba(100, 255, 218, 0.06);
-            text-align: center;
-            transition: 0.3s ease;
-        }
-
-        .skill-card.hidden {
-            display: none;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-6px);
-            border-color: #64ffda;
-            box-shadow: 0 15px 30px rgba(100, 255, 218, 0.04);
-        }
-
-        .skill-card i {
-            font-size: 3.6rem;
-            color: #64ffda;
-            margin-bottom: 1.2rem;
-        }
-
-        .skill-card h3 {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .skill-card p {
-            font-size: 1.5rem;
-            color: #c0c8d8;
-        }
-
-        /* Footer */
-        .footer {
-            background: rgba(7, 10, 20, 0.85);
-            backdrop-filter: blur(10px);
-            padding: 4rem 9%;
-            text-align: center;
-            border-top: 1px solid rgba(100, 255, 218, 0.02);
-        }
-
-        .footer h2 {
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            color: #64ffda;
-        }
-
-        .footer p {
-            font-size: 1.6rem;
-            color: #a8b2d1;
-            margin-bottom: 2rem;
-        }
-
-        .footer a {
-            color: #64ffda;
-            transition: 0.3s ease;
-        }
-
-        .footer a:hover {
-            color: #4fd1c7;
-        }
-
-        .footer-note {
-            font-size: 1.4rem;
-            color: #8892b0;
-            margin-top: 2rem;
-        }
-
-        /* Responsive tweaks */
-        @media (max-width: 1200px) {
-            html {
-                font-size: 55%;
-            }
-
-            .project-content,
-            .skills-content,
-            .education-content {
-                grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-            }
-        }
-
-        @media (max-width: 768px) {
-            html {
-                font-size: 50%;
-            }
-
-            header {
-                padding: 1rem 5%;
-            }
-
-            section {
-                padding: 6rem 5% 4rem;
-            }
-
-            .home {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .home-content h1 {
-                font-size: 4.5rem;
-            }
-
-            .typing-text {
-                font-size: 2.8rem;
-            }
-
-            nav a {
-                margin-left: 2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo {
-                font-size: 2.2rem;
-            }
-
-            nav a {
-                font-size: 1.4rem;
-                margin-left: 1.5rem;
-            }
-
-            .home-content h1 {
-                font-size: 3.5rem;
-            }
-
-            .typing-text {
-                font-size: 2.2rem;
-            }
-
-            .project-content,
-            .skills-content,
-            .education-content {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Himanshu Kumar Jha | Software Engineer</title>
+  <meta name="description"
+    content="Software engineer in New Delhi working on backend, computer vision and cloud infrastructure — a model-agnostic CV platform at Cognecto, a geospatial voter-segmentation engine for the ECI, and road-telemetry pass detection.">
+  <link rel="canonical" href="https://himanshu-kr-jha.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Himanshu Kumar Jha | Software Engineer">
+  <meta property="og:description"
+    content="Backend, computer vision and cloud infrastructure. Selected work, experience, writing and a résumé.">
+  <meta property="og:url" content="https://himanshu-kr-jha.github.io/">
+  <meta property="og:image"
+    content="https://raw.githubusercontent.com/himanshu-kr-jha/portfolio-himanshu/refs/heads/main/thumbnail.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f2f2f3">
+  <link rel="icon" href="logo-color.svg">
+  <link rel="stylesheet" href="assets/blueprint.css">
 </head>
 
 <body>
-    <div class="stars-container" id="starsContainer"></div>
+  <div class="sheet">
 
-    <header>
-        <a href="#" class="logo">Himanshu</a>
-        <nav>
-            <a href="#" class="active">Home</a>
-            <a href="#projects">Projects</a>
-            <a href="#skills">Skills</a>
-            <a href="#education">Education</a>
-            <a href="#experience">Experience</a>
-        </nav>
-    </header>
+    <aside class="rail">
+      <div>
+        <div class="rail-name" id="rail-name">Himanshu Kumar Jha</div>
+      </div>
+      <nav class="rail-nav" id="rail-nav" aria-label="Sections">
+        <a href="#hero">00 · Intro</a>
+        <a href="#work">01 · Selected work</a>
+        <a href="#more">02 · More projects</a>
+        <a href="#experience">03 · Experience</a>
+        <a href="#skills">04 · Skills</a>
+        <a href="#writing">05 · Writing</a>
+        <a href="#ask">06 · Ask about me</a>
+        <a href="#contact">07 · Contact</a>
+      </nav>
+      <a id="rail-resume" href="Himanshu-Kumar-Jha-Resume.pdf" target="_blank" rel="noopener"
+        class="btn btn-primary blueprint rail-foot">Résumé PDF<i class="corner tl"></i><i class="corner tr"></i><i
+          class="corner bl"></i><i class="corner br"></i></a>
+    </aside>
 
-    <!-- Home Section -->
-    <section class="home" id="home">
-        <div class="home-content">
-            <h1>Hi, I'm <span>Himanshu</span></h1>
-            <h3 class="typing-text">I'm a <span></span></h3>
-            <p>An undergraduate software engineering student from Delhi, on a mission to innovate and solve real-world
-                problems. Passionate about web development, machine learning, and algorithmic problem
-                solving.<br><br><strong>Let's Build the Future Together!</strong></p>
+    <main class="sheet-main">
 
-            <div class="social-icons">
-                <a href="https://linkedin.com/in/himanshu-kumar-jha-software-engineer" target="_blank">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://github.com/himanshu-kr-jha" target="_blank">
-                    <i class="fab fa-github"></i>
-                </a>
-            </div>
+      <noscript>
+        <p class="noscript-note">This sheet draws itself from <code>assets/portfolio-data.js</code> in the browser.
+          Without JavaScript, the résumé PDF linked in the left rail carries the same content —
+          or write to himanshukrjha004@gmail.com.</p>
+      </noscript>
 
-            <a href="https://drive.google.com/file/d/18DzcaRl_boqqJVZBP1j8kMtow-h729LU/view?usp=drive_link"
-                target="_blank" class="btn">
-                <i class="fas fa-download"></i> Download Resume
-            </a>
+      <section id="hero" class="section">
+        <div class="hero-kicker" id="hero-kicker"></div>
+        <h1 class="hero-title" id="hero-title"></h1>
+        <div class="hero-rule"><span></span></div>
+        <p class="hero-pitch" id="hero-pitch"></p>
+        <p class="hero-summary" id="hero-summary"></p>
+        <div class="hero-actions">
+          <a class="btn btn-primary blueprint" id="hero-mail" href="#">Start a conversation<i class="corner tl"></i><i
+              class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></a>
+          <a class="btn btn-secondary" id="hero-resume" href="Himanshu-Kumar-Jha-Resume.pdf" target="_blank"
+            rel="noopener">Résumé PDF</a>
         </div>
-    </section>
+        <div class="hero-grid" id="hero-grid"></div>
+      </section>
 
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="project-content">
-            <a href="https://logdaily.netlify.app" target="_blank" class="project-box">
-    <i class="fas fa-chart-line"></i>
-    <h3>LogDaily – Habit & Sleep Tracking Web App</h3>
-
-    <p>
-        Built a full-stack habit & sleep tracking platform with Google OAuth login, cloud-synced data, 
-        interactive analytics, and a responsive dashboard. Integrated MongoDB Atlas, JWT auth, and 
-        Recharts-based visualizations for trends, streaks, and insights.
-    </p>
-
-    <div class="badges">
-        <span class="badge">
-            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"
-                 alt="React"> React
-        </span>
-
-        <span class="badge">
-            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg"
-                 alt="Node.js"> Node.js
-        </span>
-
-        <span class="badge">
-            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg"
-                 alt="MongoDB"> MongoDB Atlas
-        </span>
-
-        <span class="badge">
-            <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png"
-                 style="width:16px;height:16px;" alt="OAuth"> Google OAuth
-        </span>
-
-        <span class="badge">
-            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-plain.svg"
-                 alt="Tailwind"> TailwindCSS
-        </span>
-
-        <span class="badge">
-            <img src="https://cdn-icons-png.flaticon.com/512/2807/2807252.png"
-                 style="width:16px;height:16px;" alt="Charts"> Recharts
-        </span>
-    </div>
-</a>
-
-            <a href="https://github.com/himanshu-kr-jha/formerPose_implementation" target="_blank" class="project-box">
-                <i class="fas fa-cubes"></i>
-                <h3>FormerPose – 6D Pose Estimation</h3>
-                <p>Reproduced the FormerPose (2024) research model for RGB-D based 6D object pose estimation, achieving
-                    0.0667 m mean ADD on LINEMOD with multi-scale Transformers, point-cloud fusion and ICP refinement.
-                </p>
-
-                <div class="badges">
-                    <span class="badge">
-                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pytorch/pytorch-original.svg"
-                            alt="PyTorch"> PyTorch
-                    </span>
-                    <span class="badge">
-                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/opencv/opencv-original.svg"
-                            alt="OpenCV"> OpenCV
-                    </span>
-                    <span class="badge">
-                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
-                            alt="Python"> Python
-                    </span>
-                    <span class="badge">
-                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg"
-                            alt="NumPy"> Point Clouds
-                    </span>
-                    <span class="badge">
-                        <img src="https://cdn-icons-png.flaticon.com/512/2533/2533187.png" alt="AI"
-                            style="width:16px;height:16px;"> Transformers
-                    </span>
-                </div>
-            </a>
-
-            <a href="https://etapredict.onrender.com" target="_blank" class="project-box">
-                <i class="fas fa-shipping-fast"></i>
-                <h3>ETA Predict</h3>
-                <p>Smarter delivery estimates using machine learning algorithms and real-time data. Built a Gradient
-                    Boosting model (R² 0.81, MAE 6.6 min) and a serverless MLOps pipeline reducing redeployment from
-                    weeks to &lt;7 min at &lt;₹170/month, easily adaptable to any ML model.</p>
-                <div class="badges">
-                    <span class="badge"><img
-                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
-                            alt="Python"> Python</span>
-                    <span class="badge"><img
-                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tensorflow/tensorflow-original.svg"
-                            alt="TF"> ML</span>
-                    <span class="badge"><img
-                            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg" />
-                        GCP</span>
-                    <span class="badge"><img
-                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg"
-                            alt="Docker"> Docker</span>
-                </div>
-            </a>
-
-            <a href="https://github.com/himanshu-kr-jha/codeledger" target="_blank" class="project-box">
-                <i class="fas fa-laptop-code"></i>
-                <h3>Code Ledger</h3>
-                <p>Chrome extension to log solved coding problems directly to Google Sheets — title, URL, status and
-                    remarks with one click.</p>
-                <div class="badges">
-                    <span class="badge"><img
-                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
-                            alt="JS"> JS</span>
-                    <span class="badge"><img
-                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/chrome/chrome-original.svg"
-                            alt="Chrome"> Extension</span>
-                    <span class="badge"><img
-                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/google/google-original.svg"
-                            alt="GS"> Google Sheets API</span>
-                </div>
-            </a>
-
-            <a href="https://destinate.onrender.com" target="_blank" class="project-box">
-                <i class="fas fa-map-marked-alt"></i>
-                <h3>Destinate it</h3>
-                <p>Navigation app with location posting, place tagging, nearby search, and advanced filtering.</p>
-                <div class="badges">
-                    <span class="badge"><img
-                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"
-                            alt="React"> React</span>
-                    <span class="badge"><img
-                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg"
-                            alt="Node"> Node</span>
-                    <span class="badge"><img
-                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg"
-                            alt="Mongo"> MongoDB</span>
-                </div>
-            </a>
-
-            <a href="https://joinup.onrender.com" target="_blank" class="project-box">
-                <i class="fas fa-video"></i>
-                <h3>JoinUp</h3>
-                <p>Video meeting platform with real-time conferencing, screen share and chat.</p>
-                <div class="badges">
-                    <span class="badge"><img
-                            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original-wordmark.svg" "
-                            alt=" Express"> Express</span>
-                    <span class="badge"><img
-                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/socketio/socketio-original.svg"
-                            alt="Socket.IO"> Socket.IO</span>
-                    <span class="badge"><img
-                            src="https://webrtc.github.io/webrtc-org/assets/images/webrtc-logo-vert-retro-255x305.png"
-                            alt="WebRTC"> WebRTC</span>
-                </div>
-            </a>
-
-            <a href="https://github.com/himanshu-kr-jha/video-deployment-aws/blob/main/Readme.md" target="_blank"
-                class="project-box">
-                <i class="fas fa-cloud"></i>
-                <h3>Scalable Video Processing</h3>
-                <p>Automated video pipeline converting movies to grayscale using AWS Lambda, ECS and S3.</p>
-                <div class="badges">
-                    <span class="badge"><img
-                            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" />
-                        AWS</span>
-                    <span class="badge"><img
-                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg"
-                            alt="Docker"> Docker</span>
-                    <span class="badge"><img
-                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
-                            alt="Python"> Python</span>
-                </div>
-            </a>
-
-            <a href="https://github.com/himanshu-kr-jha/Automated-Excavator-Monitoring-Service" target="_blank"
-                class="project-box">
-                <i class="fas fa-tools"></i>
-                <h3>Excavator Monitoring System</h3>
-                <p>Monitoring system developed during internship using YOLO and OpenCV, improving detection accuracy and
-                    safety.</p>
-                <div class="badges">
-                    <span class="badge"><img
-                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
-                            alt="Python"> Python</span>
-                    <span class="badge"><img
-                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/opencv/opencv-original.svg"
-                            alt="OpenCV"> OpenCV</span>
-                    <span class="badge"><img
-                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/yolo/yolo-original.svg"
-                            alt="YOLO"> YOLO</span>
-                </div>
-            </a>
-
-            <a href="https://github.com/himanshu-kr-jha/automobile-predictive-failure/blob/main/README.md"
-                target="_blank" class="project-box">
-                <i class="fas fa-car-crash"></i>
-                <h3>Automobile Failure Detection</h3>
-                <p>Predictive ML model for automobile failures to reduce maintenance costs through analytics.</p>
-                <div class="badges">
-                    <span class="badge"><img
-                            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg" />
-                        Scikit-learn</span>
-                    <span class="badge"><img
-                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pandas/pandas-original.svg"
-                            alt="Pandas"> Pandas</span>
-                    <span class="badge"><img
-                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
-                            alt="Py"> Python</span>
-                </div>
-            </a>
-
-            <!-- <a href="https://speechify-text.onrender.com" target="_blank" class="project-box">
-                <i class="fas fa-microphone-alt"></i>
-                <h3>Speechify Text</h3>
-                <p>Text-to-speech app using AWS S3, Lambda and Polly with Node.js and Express.</p>
-                <div class="badges">
-                    <span class="badge"><img
-                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg"
-                            alt="Node"> Node</span>
-                    <span class="badge"><img
-                            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" />
-                        AWS</span>
-                    <span class="badge"><img
-                            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original-wordmark.svg" "
-                            alt=" Express"> Express</span>
-                </div>
-            </a> -->
+      <section id="work" class="section">
+        <div class="sec-head">
+          <span class="sec-num">01</span>
+          <h2>Selected work</h2>
+          <span class="sec-note">Three built to depth</span>
         </div>
-    </section>
+        <div id="work-list"></div>
+      </section>
 
-    <!-- Skills Section -->
-    <section class="skills" id="skills">
-        <h2 class="section-title">Technical Skills</h2>
-        <div class="skills-content">
-            <div class="skill-card">
-                <i class="fas fa-code"></i>
-                <h3>Programming Languages</h3>
-                <p>Java, JavaScript, Python, HTML, CSS</p>
-            </div>
-
-            <div class="skill-card">
-                <i class="fas fa-server"></i>
-                <h3>Web Technologies</h3>
-                <p>MongoDB, Express.js, Node.js, React.js, Bootstrap, Driver.js</p>
-            </div>
-
-            <div class="skill-card">
-                <i class="fas fa-robot"></i>
-                <h3>Machine Learning</h3>
-                <p>YOLO, OpenCV, TensorFlow, Computer Vision, Scikit-learn, Pandas, Numpy, Joblib</p>
-            </div>
-
-            <div class="skill-card">
-                <i class="fab fa-aws"></i>
-                <h3>Cloud Services</h3>
-                <p>AWS Lambda, ECS, S3, Fargate, Polly</p>
-            </div>
-
-            <div class="skill-card">
-                <i class="fas fa-cloud"></i>
-                <h3>Cloud Services</h3>
-                <p>GCP, Cloud Build, Cloud Functions, Cloud Run Jobs, Cloud Run Services, Cloud Storage, Eventarc, GCR
-                </p>
-            </div>
-
-            <div class="skill-card">
-                <i class="fab fa-docker"></i>
-                <h3>DevOps</h3>
-                <p>Docker, Containerization, Cloud Deployment</p>
-            </div>
-
-            <div class="skill-card">
-                <i class="fas fa-code-branch"></i>
-                <h3>Version Control</h3>
-                <p>Git, GitHub, Collaborative Development</p>
-            </div>
+      <section id="more" class="section">
+        <div class="sec-head">
+          <span class="sec-num">02</span>
+          <h2>More projects</h2>
+          <span class="sec-note">Click a row to expand</span>
         </div>
-    </section>
+        <div class="rows" id="project-rows"></div>
+      </section>
 
-    <!-- Education Section -->
-    <section class="education" id="education">
-        <h2 class="section-title">Education</h2>
-        <div class="education-content">
-            <div class="education-card">
-                <div
-                    style="border-radius: 1rem; margin: 0 auto 2rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold;">
-                    <img src="dtu.png" alt="">
-                </div>
-                <h3>Bachelor of Technology</h3>
-                <p>Software Engineering<br>Delhi Technological University, New Delhi<br>CGPA: 8.84<br>Expected
-                    Graduation: Nov 2026</p>
-                <a href="GPA.html" class="btn">View Details</a>
-            </div>
-
-            <div class="education-card">
-                <div
-                    style="border-radius: 1rem; margin: 0 auto 2rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold;">
-                    <img src="rsv.png" alt="">
-                </div>
-                <h3>Senior Secondary</h3>
-                <p>Science Stream<br>Rashtra Shakti Vidyalaya, New Delhi<br>Class XII: 94%<br>Graduated: March 2022</p>
-                <a href="GPA.html" class="btn">View Details</a>
-            </div>
-
-            <div class="education-card">
-                <div
-                    style="border-radius: 1rem; margin: 0 auto 2rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold;">
-                    <img src="rsv.png" alt="">
-                </div>
-                <h3>Secondary School</h3>
-                <p>General Studies<br>Rashtra Shakti Vidyalaya, New Delhi<br>Class X: 95.6%<br>Graduated: March 2020</p>
-                <a href="GPA.html" class="btn">View Details</a>
-            </div>
+      <section id="experience" class="section">
+        <div class="sec-head">
+          <span class="sec-num">03</span>
+          <h2>Experience</h2>
         </div>
-    </section>
+        <div class="exp-list" id="exp-list"></div>
+      </section>
 
-    <!-- Experience Section -->
-    <section class="experience" id="experience">
-        <h2 class="section-title">Professional Experience</h2>
-        <div class="experience-content">
-            <div class="experience-box">
-                <div>
-                    <h3>Advanced Application Engineer</h3>
-                    <p><strong>Accenture</strong> · Internship<br>Jun 2025 - Jul 2025 · 2 months<br>Bengaluru, India ·
-                        On-site</p>
-                    <p>Gained expertise in automated MLOps pipeline development on Google Cloud Platform,</p>
-                    <p>Optimized cloud-native solutions.</p>
-                    <div class="badges">
-                        <span class="badge">Google Cloud Platform</span>
-                        <span class="badge">Python</span>
-                        <span class="badge">TensorFlow</span>
-                        <span class="badge">Docker</span>
-
-                    </div>
-                    </p>
-                </div>
-
-                <div
-                    style="border-radius: 2rem; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #0f0f23;">
-                    <img src="accenture.png" alt="Accenture Logo" style="width: 300px; height: 180px;">
-                </div>
-            </div>
-            <div class="experience-box">
-
-                <div>
-                    <h3>Machine Learning Engineer</h3>
-                    <p><strong>Cognecto</strong> · Internship<br>May 2024 - Jul 2024 · 3 months<br>Delhi, India · Remote
-                    </p>
-                    <p>Developed Excavator Monitoring System using YOLO and OpenCV, improving operational efficiency and
-                        safety protocols
-                    <p>Mentored students in academic and career development, focusing on requirements analysis and youth
-                        guidance.</p>
-                    </p>
-                    <p>
-                    <div class="badges">
-                        <span class="badge">Computer Vision</span>
-                        <span class="badge">AWS</span>
-                        <span class="badge">Machine Learning</span>
-                    </div>
-                    </p>
-                </div>
-                <div
-                    style="border-radius: 2rem; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #0f0f23;">
-                    <img src="cognecto.png" alt="" style="width: 200px; height: 200px; border-radius: 50%;">
-                </div>
-
-            </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer" id="contact">
-        <div class="footer-content">
-            <h2>Let's Connect</h2>
-            <p>I'm always open to new opportunities, collaborations, and innovative ideas. Feel free to reach out!</p>
-            <div class="contact-info">
-                <p><i class="fas fa-envelope"></i> <a
-                        href="mailto:himanshukrjha004@gmail.com">himanshukrjha004@gmail.com</a></p>
-                <p><i class="fab fa-linkedin"></i> <a
-                        href="https://www.linkedin.com/in/himanshu-kumar-jha-software-engineer" target="_blank">LinkedIn
-                        Profile</a></p>
-                <p><i class="fab fa-github"></i> <a href="https://github.com/himanshu-kr-jha" target="_blank">GitHub
-                        Profile</a></p>
-            </div>
-            <p class="footer-note">© 2025 Himanshu Kumar Jha. All Rights Reserved.</p>
+      <section id="skills" class="section">
+        <div class="sec-head">
+          <span class="sec-num">04</span>
+          <h2>Skills</h2>
         </div>
-    </footer>
+        <table class="table specs-table">
+          <tbody id="specs-body"></tbody>
+        </table>
+      </section>
 
-    <script>
-        // Create a field of stars with varied sizes, twinkle speed and delays
-        function createStars(count = 120) {
-            const container = document.getElementById('starsContainer');
-            container.innerHTML = '';
-            const w = window.innerWidth;
-            const h = window.innerHeight;
-            for (let i = 0; i < count; i++) {
-                const star = document.createElement('div');
-                star.classList.add('star');
-                const sizeRnd = Math.random();
-                if (sizeRnd < 0.6) star.classList.add('small');
-                else if (sizeRnd < 0.9) star.classList.add('medium');
-                else star.classList.add('large');
+      <section id="writing" class="section">
+        <div class="sec-head">
+          <span class="sec-num">05</span>
+          <h2>Writing</h2>
+        </div>
+        <div class="notes-grid" id="notes-grid"></div>
+      </section>
 
-                const left = Math.random() * 100; // vw
-                const top = Math.random() * 100; // vh
-                star.style.left = left + 'vw';
-                star.style.top = top + 'vh';
+      <section id="github" class="section">
+        <div class="blueprint gh-plate">
+          <div class="gh-head">
+            <h2>GitHub activity</h2>
+            <a id="gh-link" href="https://github.com/himanshu-kr-jha" target="_blank" rel="noopener"></a>
+          </div>
+          <img id="gh-chart" class="gh-chart" src="" alt="GitHub contribution graph" loading="lazy">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        </div>
+      </section>
 
-                // random twinkle duration and delay for smooth non-sync effect
-                const dur = (Math.random() * 6 + 3).toFixed(2); // 3s - 9s
-                const delay = (Math.random() * 6).toFixed(2);
-                star.style.animation = `twinkle ${dur}s ease-in-out ${delay}s infinite`;
+      <section id="ask" class="section">
+        <div class="sec-head">
+          <span class="sec-num">06</span>
+          <h2>Ask about me</h2>
+          <span class="sec-note">Answers drawn only from this page</span>
+        </div>
+        <div class="blueprint ask-panel">
+          <div class="ask-log" id="ask-log" role="log" aria-live="polite"></div>
+          <div class="ask-chips" id="ask-chips"></div>
+          <form class="ask-form" id="ask-form">
+            <input id="ask-input" name="q" class="input" autocomplete="off"
+              aria-label="Ask a question about my work" placeholder="Ask a question about my work…">
+            <button type="submit" class="btn btn-primary" id="ask-send">Ask</button>
+          </form>
+          <span class="ask-note" id="ask-note"></span>
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        </div>
+      </section>
 
-                // subtle color variants
-                const hueShift = Math.random() * 30 - 15; // -15 to +15
-                star.style.background = `hsl(${150 + hueShift}, 90%, ${Math.random() * 30 + 60}%)`;
+      <section id="contact" class="contact">
+        <div>
+          <span class="sec-num">07</span>
+          <span class="tag tag-accent contact-availability" id="contact-availability"></span>
+          <h2 id="contact-heading"></h2>
+          <p class="contact-body" id="contact-body"></p>
+          <div class="contact-links">
+            <a id="contact-email" href="#"></a>
+            <a id="contact-phone" href="#"></a>
+            <a id="contact-linkedin" href="#" target="_blank" rel="noopener">LinkedIn ↗</a>
+          </div>
+        </div>
+        <form class="blueprint contact-form" id="contact-form">
+          <label>
+            <span>Name</span>
+            <input name="name" class="input" required>
+          </label>
+          <label>
+            <span>Email</span>
+            <input name="email" type="email" class="input" required>
+          </label>
+          <label>
+            <span>Message</span>
+            <textarea name="message" rows="4" class="input" required></textarea>
+          </label>
+          <!-- Honeypot: real people never see it, bots fill it in. -->
+          <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off"
+            aria-hidden="true">
+          <button type="submit" class="btn btn-primary btn-block" id="contact-submit">Send message</button>
+          <span class="form-note" id="form-note" role="status" aria-live="polite"></span>
+          <a class="btn btn-secondary" id="form-fallback" href="#" hidden>Open in your mail app instead</a>
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        </form>
+      </section>
 
-                container.appendChild(star);
-            }
+      <footer class="sheet-foot">
+        <span id="foot-credit">© 2026 Himanshu Kumar Jha · Sheet 01 of 01</span>
+        <nav id="foot-links"></nav>
+      </footer>
+    </main>
+  </div>
 
-            // a few soft particles to add depth
-            for (let p = 0; p < 6; p++) {
-                const part = document.createElement('div');
-                part.classList.add('particle');
-                const size = 40 + Math.random() * 120;
-                part.style.width = size + 'px';
-                part.style.height = size + 'px';
-                part.style.left = (Math.random() * 100) + 'vw';
-                part.style.top = (Math.random() * 100) + 'vh';
-                part.style.animationDuration = (20 + Math.random() * 30) + 's';
-                container.appendChild(part);
-            }
-        }
+  <script src="assets/portfolio-data.js"></script>
+  <script src="assets/dom.js"></script>
+  <script src="assets/ask.js"></script>
+  <script src="assets/ask-config.js"></script>
+  <script src="assets/ask-remote.js"></script>
+  <script src="assets/portfolio.js"></script>
 
-        // Occasionally spawn a comet that flies across the screen
-        function spawnComet() {
-            const container = document.getElementById('starsContainer');
-            const comet = document.createElement('div');
-            comet.classList.add('comet');
-
-            // random vertical start (so it flies diagonally)
-            const startTop = 20 + Math.random() * 60; // between 20vh and 80vh
-            comet.style.top = startTop + 'vh';
-
-            // random duration
-            const dur = 4 + Math.random() * 6; // 4s - 10s
-            comet.style.animation = `comet-fly ${dur}s linear forwards`;
-
-            // slight rotation variance
-            const rot = -15 - Math.random() * 20; // -15 to -35 deg
-            comet.style.transform = `translateX(-260px) rotate(${rot}deg)`;
-
-            container.appendChild(comet);
-
-            // remove after animation
-            setTimeout(() => { comet.remove(); }, (dur + 0.5) * 1000);
-        }
-
-        // schedule comets at random intervals
-        function scheduleComets() {
-            const min = 4000; // 4s
-            const max = 22000; // 22s
-            const next = Math.random() * (max - min) + min;
-            setTimeout(() => {
-                spawnComet();
-                scheduleComets();
-            }, next);
-        }
-
-        // Create stars on load and on resize (debounced)
-        window.addEventListener('DOMContentLoaded', () => {
-            createStars(140);
-            scheduleComets();
-        });
-
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => createStars(120), 250);
-        });
-
-        // Header scroll behavior and nav smooth scroll
-        window.addEventListener('scroll', function () {
-            const header = document.querySelector('header');
-            header.classList.toggle('scrolled', window.scrollY > 50);
-        });
-
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                if (this.getAttribute('href').startsWith('#')) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-    </script>
+  <!-- Privacy-friendly analytics: no cookies, no personal data, no consent
+       banner needed. Paste your token into data-cf-beacon to switch it on;
+       delete this block to remove analytics entirely.
+       Sign up at https://dash.cloudflare.com → Web Analytics.
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'></script>
+  -->
 </body>
 
 </html>
