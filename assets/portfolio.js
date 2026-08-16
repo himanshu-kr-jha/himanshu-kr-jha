@@ -438,8 +438,12 @@
     var handsOff = 0;
 
     /* The line the pinned bar sits above: a section counts as "current" once
-       its top crosses this. Matches the scroll-margin-top in blueprint.css. */
+       its top crosses this. Matches the scroll-margin-top in blueprint.css.
+       TOLERANCE exists because a snapped section lands on that exact value,
+       and sub-pixel rounding then leaves `top` a hair over it — which read as
+       the rail lagging one section behind on every snap. */
     var MARKER = 140;
+    var TOLERANCE = 8;
 
     /* Where we are as a fraction across the whole index — 2.4 means "40% of
        the way through section 02". This is what lets the strip glide with the
@@ -447,7 +451,7 @@
     function position() {
       var index = 0;
       sections.forEach(function (section, i) {
-        if (section && section.getBoundingClientRect().top <= MARKER) index = i;
+        if (section && section.getBoundingClientRect().top <= MARKER + TOLERANCE) index = i;
       });
 
       var current = sections[index];
@@ -466,6 +470,14 @@
       ticking = false;
       var at = position();
       var index = Math.floor(at);
+
+      /* The last section can never scroll its top to the marker — there is no
+         page left below it — so without this the rail would still be pointing
+         at the second-to-last section while the last one fills the screen. */
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+        at = links.length - 1;
+        index = at;
+      }
       links.forEach(function (a, i) { a.classList.toggle("is-current", i === index); });
 
       /* Only the narrow layout lays the index out as a scrolling strip; on the
