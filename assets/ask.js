@@ -429,7 +429,7 @@
       if (name === "contact") {
         return (ctx.data.contact || {}).body + " The best way to reach him is "
           + profile.email + (profile.phone ? ", or " + profile.phone : "")
-          + ". His résumé PDF is linked at the top-left of this page.";
+          + ". His resume PDF is linked at the top-left of this page.";
       }
 
       if (name === "github") {

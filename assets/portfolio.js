@@ -422,7 +422,7 @@
     mount("foot-links", [
       PROFILE.github ? el("a", { href: PROFILE.github, target: "_blank", rel: "noopener", text: "GitHub" }) : null,
       PROFILE.linkedin ? el("a", { href: PROFILE.linkedin, target: "_blank", rel: "noopener", text: "LinkedIn" }) : null,
-      PROFILE.resumeUrl ? el("a", { href: PROFILE.resumeUrl, target: "_blank", rel: "noopener", text: "Résumé" }) : null
+      PROFILE.resumeUrl ? el("a", { href: PROFILE.resumeUrl, target: "_blank", rel: "noopener", text: "Resume" }) : null
     ]);
   }
 
