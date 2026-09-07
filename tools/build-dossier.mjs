@@ -95,12 +95,22 @@ function buildDossier(data) {
     ]));
   });
 
+  /* An entry with `roles` is several posts at one company. Each post becomes
+     its own section so the assistant can answer about one of them, and each
+     carries the company span so it can also say they were held back to back. */
   (data.experience || []).forEach((e) => {
-    out.push(section(`Experience — ${e.role} at ${e.org}`, [
-      `When: ${e.period} · ${e.place}`,
-      ...(e.bullets || []).map((b) => `- ${b}`),
-      (e.tags || []).length ? `Tech: ${e.tags.join(", ")}` : ""
-    ]));
+    const posts = (e.roles || []).length ? e.roles : [e];
+    posts.forEach((post) => {
+      const when = [post.period, post.duration, post.place || e.place].filter(Boolean).join(" · ");
+      out.push(section(`Experience — ${post.role}${post.type ? `, ${post.type}` : ""} at ${e.org}`, [
+        `When: ${when}`,
+        (e.roles || []).length
+          ? `Part of a continuous stint at ${e.org}: ${e.period}${e.duration ? ` · ${e.duration}` : ""} · ${e.place}`
+          : "",
+        ...(post.bullets || []).map((b) => `- ${b}`),
+        (post.tags || []).length ? `Tech: ${post.tags.join(", ")}` : ""
+      ]));
+    });
   });
 
   out.push(section("Skills", (data.specs || []).map((s) => `${s.label}: ${s.value}`)));

@@ -513,6 +513,29 @@ body {
 }
 .exp-tags { display: flex; gap: 6px; flex-wrap: wrap; }
 
+/* Several posts at one company. The spine runs from each node down to the
+   next, so the eye reads one unbroken stint with a step in it; the last post
+   ends the line rather than trailing off into nothing. The current post takes
+   the accent node, earlier ones a neutral node, which is the whole visual
+   claim being made — this one is now, that one was before it. */
+.exp-roles { display: flex; flex-direction: column; gap: 26px; }
+.exp-post { position: relative; padding-left: 24px; }
+.exp-post::before {
+  content: ""; position: absolute; left: 3px; top: 8px; bottom: -26px;
+  width: 1px; background: var(--color-divider);
+}
+.exp-post:last-child::before { content: none; }
+.exp-post::after {
+  content: ""; position: absolute; left: 0; top: 5px;
+  width: 7px; height: 7px; background: var(--color-accent);
+}
+.exp-post.is-past::after { background: var(--color-neutral-400); }
+.exp-post .exp-role { margin-bottom: 3px; }
+.exp-post-meta {
+  font-size: 0.875rem; color: var(--color-neutral-700);
+  font-variant-numeric: tabular-nums; margin-bottom: 12px;
+}
+
 /* — 04 · skills — */
 .specs-table { width: 100%; }
 .specs-table td:first-child {

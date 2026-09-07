@@ -81,6 +81,53 @@ Copy a block inside `notes`. `body` is an array of paragraphs — one string per
 paragraph. The assistant reads `body`, so a note makes the assistant smarter
 about how you think, not just what you built.
 
+## Add a job — and a promotion
+
+A job is a block in `experience`, newest first:
+
+```js
+{
+  org: "Company",
+  period: "2025.06 — 2025.07",
+  place: "On-site · Bengaluru",
+  role: "What you were called",
+  bullets: ["…", "…"],
+  tags: ["Python", "Docker"]
+}
+```
+
+**Several posts at one company** — a promotion, or an internship you converted
+from — go in a `roles` array on a single block rather than as two blocks. The
+company is named once and the posts hang off a shared spine, so the section
+reads as one continuous stint with a step in it. Put `bullets` and `tags` on
+each post, and keep the posts newest first; the first one gets the accent
+marker as the current post.
+
+```js
+{
+  org: "Company",
+  period: "2026.01 — present",   // the whole stint
+  duration: "9 mos",             // optional
+  place: "Bengaluru, India",
+  roles: [
+    {
+      role: "AI Engineer", type: "Full-time",
+      period: "2026.08 — present", duration: "2 mos", place: "On-site",
+      bullets: ["…"], tags: ["FastAPI"]
+    },
+    {
+      role: "AI Engineer", type: "Internship",
+      period: "2026.01 — 2026.07", duration: "7 mos", place: "Remote",
+      bullets: ["…"], tags: ["React Native"]
+    }
+  ]
+}
+```
+
+Only group posts that were actually back to back. Two separate stints at the
+same company, years apart, are two blocks — grouping them would claim a
+continuity that didn't happen.
+
 ## Update the résumé
 
 Replace `Himanshu-Kumar-Jha-Resume.pdf` at the repo root, keeping the filename.

@@ -179,23 +179,46 @@
 
   /* ── 03 · experience ──────────────────────────────────────────────────── */
 
+  /* One post: the title, its bullets and its tags. `nested` adds the meta line
+     (type · period · duration · place) that a grouped entry needs and a flat
+     one must not have — for a flat entry that detail is already in the left
+     column, and printing it twice is just noise. */
+  function expPost(post, nested) {
+    var meta = nested
+      ? [post.type, post.period, post.duration, post.place].filter(Boolean).join(" · ")
+      : "";
+    return [
+      el("div", { class: "exp-role", text: post.role }),
+      meta ? el("div", { class: "exp-post-meta", text: meta }) : null,
+      el("ul", { class: "exp-bullets" }, (post.bullets || []).map(function (b) {
+        return el("li", { text: b });
+      })),
+      el("div", { class: "exp-tags" }, (post.tags || []).map(function (t) {
+        return el("span", { class: "tag tag-outline", text: t });
+      }))
+    ];
+  }
+
+  /* An entry carrying `roles` is several posts at one company. They hang off a
+     shared spine so the block reads as one continuous stint rather than as two
+     unrelated jobs that happen to sit next to each other. */
+  function expBody(e) {
+    if (!e.roles || !e.roles.length) return expPost(e, false);
+    return el("div", { class: "exp-roles" }, e.roles.map(function (post, i) {
+      return el("div", { class: "exp-post" + (i ? " is-past" : "") }, expPost(post, true));
+    }));
+  }
+
   function renderExperience() {
     mount("exp-list", (DATA.experience || []).map(function (e) {
       return el("div", { class: "blueprint exp" }, [
         el("div", null, [
           el("div", { class: "exp-org", text: e.org }),
           el("div", { class: "exp-period", text: e.period }),
+          e.duration ? el("div", { class: "exp-place", text: e.duration }) : null,
           el("div", { class: "exp-place", text: e.place })
         ]),
-        el("div", null, [
-          el("div", { class: "exp-role", text: e.role }),
-          el("ul", { class: "exp-bullets" }, (e.bullets || []).map(function (b) {
-            return el("li", { text: b });
-          })),
-          el("div", { class: "exp-tags" }, (e.tags || []).map(function (t) {
-            return el("span", { class: "tag tag-outline", text: t });
-          }))
-        ]),
+        el("div", null, expBody(e)),
         corners()
       ]);
     }));

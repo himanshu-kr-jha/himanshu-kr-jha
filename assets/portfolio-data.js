@@ -27,7 +27,7 @@ window.PORTFOLIO_DATA = {
 
   // The three cards under the headline
   titleBlocks: [
-    { label: "Current post", title: "AI Engineer · Cognecto", meta: "2026.08 — Present · Remote" },
+    { label: "Current post", title: "AI Engineer · Cognecto", meta: "2026.08 — Present · On-site" },
     { label: "Qualification", title: "B.Tech SE · DTU", meta: "2022 — 2026 · CGPA 8.8 / 10" }
   ],
   publication: {
@@ -279,26 +279,40 @@ window.PORTFOLIO_DATA = {
 
   // 03 · EXPERIENCE
   experience: [
+    // Several posts at one company go in `roles` rather than as separate
+    // entries — the block then reads as one continuous stint with a promotion
+    // in it, which is what actually happened. An entry with no `roles` keeps
+    // the flat shape and renders exactly as it always has.
     {
       org: "Cognecto",
-      period: "2026.08 — present",
-      place: "Remote · Bengaluru",
-      role: "AI Engineer",
-      bullets: [
-        "Architected the backend of a model-agnostic computer-vision platform so a new detector or classifier plugs in without code changes — async FastAPI over PostgreSQL with async SQLAlchemy and Alembic, cutting new-model onboarding from days to a config step.",
-        "Engineered a real-time video-processing pipeline orchestrating 10+ containerised services across ingest, inference and observability, with dual JWT / API-key auth and metrics at every stage."
-      ],
-      tags: ["FastAPI", "PostgreSQL", "Model serving", "Docker Compose"]
-    },
-    {
-      org: "Cognecto",
-      period: "2026.01 — 2026.07",
-      place: "Remote · Bengaluru",
-      role: "AI Engineer, Intern",
-      bullets: [
-        "Independently delivered a cross-platform field app for geo-tagged video capture — resumable uploads, offline queueing and managed auth."
-      ],
-      tags: ["React Native", "Mobile"]
+      period: "2026.01 — present",
+      duration: "9 mos",
+      place: "Bengaluru, India",
+      roles: [
+        {
+          role: "AI Engineer",
+          type: "Full-time",
+          period: "2026.08 — present",
+          duration: "2 mos",
+          place: "On-site",
+          bullets: [
+            "Architected the backend of a model-agnostic computer-vision platform so a new detector or classifier plugs in without code changes — async FastAPI over PostgreSQL with async SQLAlchemy and Alembic, cutting new-model onboarding from days to a config step.",
+            "Engineered a real-time video-processing pipeline orchestrating 10+ containerised services across ingest, inference and observability, with dual JWT / API-key auth and metrics at every stage."
+          ],
+          tags: ["FastAPI", "PostgreSQL", "Model serving", "Docker Compose"]
+        },
+        {
+          role: "AI Engineer",
+          type: "Internship",
+          period: "2026.01 — 2026.07",
+          duration: "7 mos",
+          place: "Remote",
+          bullets: [
+            "Independently delivered a cross-platform field app for geo-tagged video capture — resumable uploads, offline queueing and managed auth."
+          ],
+          tags: ["React Native", "Mobile"]
+        }
+      ]
     },
     {
       org: "Accenture",
