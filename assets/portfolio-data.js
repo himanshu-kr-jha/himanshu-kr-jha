@@ -402,9 +402,9 @@ window.PORTFOLIO_DATA = {
 
     // Short status line rendered as a tag above the heading. Keep it current —
     // it's the first thing someone deciding whether to write to you will read.
-    availability: "Available for freelance now · Full-time from late 2026",
+    availability: "Full-time at Cognecto · Open to select freelance",
     heading: "Let's build something that ships",
-    body: "Open to full-time software engineering roles from late 2026, and freelance work now. Backend, computer vision, cloud infrastructure — or anything that needs a model turned into a product.",
+    body: "Working full-time on computer-vision infrastructure at Cognecto, and taking on select freelance work alongside it. Backend, computer vision, cloud infrastructure — or anything that needs a model turned into a product.",
 
     // Drafts for the "Talk about work like this" and "Reply by email" buttons.
     // The visitor's mail app opens with this already written, so they are not
