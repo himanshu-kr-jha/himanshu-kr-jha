@@ -16,7 +16,7 @@ window.PORTFOLIO_DATA = {
     // One line under the headline: who you do it for. Recruiters and clients
     // read this before anything else on the page.
     pitch: "I take models and messy data the rest of the way — into services that run in production, with the pipelines, storage and observability around them.",
-    summary: "Backend, computer vision and cloud infrastructure. Currently architecting a model-agnostic CV platform at Cognecto — FastAPI over PostgreSQL, Triton inference, ten-plus containerised services in one real-time pipeline.",
+    summary: "Backend, computer vision and cloud infrastructure. Currently architecting a model-agnostic CV platform at Cognecto — FastAPI over PostgreSQL, GPU-served inference, ten-plus containerised services in one real-time pipeline.",
     resumeUrl: "https://drive.google.com/file/d/18DzcaRl_boqqJVZBP1j8kMtow-h729LU/view?usp=drive_link",
     email: "himanshukrjha004@gmail.com",
     // phone: "+91 85951 91981",
@@ -27,7 +27,7 @@ window.PORTFOLIO_DATA = {
 
   // The three cards under the headline
   titleBlocks: [
-    { label: "Current post", title: "AI/ML Engineer · Cognecto", meta: "2026.01 — Present · Remote" },
+    { label: "Current post", title: "AI Engineer · Cognecto", meta: "2026.08 — Present · Remote" },
     { label: "Qualification", title: "B.Tech SE · DTU", meta: "2022 — 2026 · CGPA 8.8 / 10" }
   ],
   publication: {
@@ -281,15 +281,24 @@ window.PORTFOLIO_DATA = {
   experience: [
     {
       org: "Cognecto",
-      period: "2026.01 — present",
+      period: "2026.08 — present",
       place: "Remote · Bengaluru",
-      role: "Software Development Engineer, Intern",
+      role: "AI Engineer",
       bullets: [
-        "Architected the backend of a model-agnostic computer-vision platform so any ONNX/Triton model plugs in without code changes — async FastAPI over PostgreSQL with async SQLAlchemy and Alembic, cutting new-model onboarding from days to a config step.",
-        "Engineered a real-time video-processing pipeline orchestrating 10+ Dockerised services (MediaMTX, Triton, Prometheus, Grafana, Loki) with dual JWT / API-key auth and full observability.",
-        "Independently delivered Cog-GeoSnap, a React Native (Expo) field app for geo-tagged video capture with resumable S3 uploads, offline queueing and Supabase auth."
+        "Architected the backend of a model-agnostic computer-vision platform so a new detector or classifier plugs in without code changes — async FastAPI over PostgreSQL with async SQLAlchemy and Alembic, cutting new-model onboarding from days to a config step.",
+        "Engineered a real-time video-processing pipeline orchestrating 10+ containerised services across ingest, inference and observability, with dual JWT / API-key auth and metrics at every stage."
       ],
-      tags: ["FastAPI", "PostgreSQL", "Triton", "Docker Compose", "React Native"]
+      tags: ["FastAPI", "PostgreSQL", "Model serving", "Docker Compose"]
+    },
+    {
+      org: "Cognecto",
+      period: "2026.01 — 2026.07",
+      place: "Remote · Bengaluru",
+      role: "AI Engineer, Intern",
+      bullets: [
+        "Independently delivered a cross-platform field app for geo-tagged video capture — resumable uploads, offline queueing and managed auth."
+      ],
+      tags: ["React Native", "Mobile"]
     },
     {
       org: "Accenture",
@@ -308,7 +317,7 @@ window.PORTFOLIO_DATA = {
       place: "Remote · Delhi",
       role: "Machine Learning Engineer, Intern",
       bullets: [
-        "Built the Excavator Monitoring System on YOLO and OpenCV, classifying machine activity from surveillance video at 95% precision for continuous utilisation analytics."
+        "Built an excavator-monitoring service on YOLO and OpenCV, classifying machine activity from surveillance video at 95% precision for continuous utilisation analytics."
       ],
       tags: []
     }
@@ -333,7 +342,7 @@ window.PORTFOLIO_DATA = {
       title: "Making an inference platform model-agnostic",
       summary: "Why the config layer, not the code, should know which model is running.",
       href: "blog.html",
-      tags: ["Backend", "Inference", "Triton"],
+      tags: ["Backend", "Inference", "Model serving"],
       // `body` is what the on-page assistant reads. Write the post here in
       // paragraphs — one string per paragraph — and the assistant can answer from it.
       body: [
