@@ -286,14 +286,12 @@ window.PORTFOLIO_DATA = {
     {
       org: "Cognecto",
       period: "2026.01 — present",
-      duration: "9 mos",
       place: "Bengaluru, India",
       roles: [
         {
           role: "AI Engineer",
           type: "Full-time",
           period: "2026.08 — present",
-          duration: "2 mos",
           place: "On-site",
           bullets: [
             "Architected the backend of a model-agnostic computer-vision platform so a new detector or classifier plugs in without code changes — async FastAPI over PostgreSQL with async SQLAlchemy and Alembic, cutting new-model onboarding from days to a config step.",
@@ -305,7 +303,6 @@ window.PORTFOLIO_DATA = {
           role: "AI Engineer",
           type: "Internship",
           period: "2026.01 — 2026.07",
-          duration: "7 mos",
           place: "Remote",
           bullets: [
             "Independently delivered a cross-platform field app for geo-tagged video capture — resumable uploads, offline queueing and managed auth."

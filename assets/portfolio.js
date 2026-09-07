@@ -6,6 +6,7 @@
   var corners = window.DOM.corners;
   var pad = window.DOM.pad;
   var mount = window.DOM.mount;
+  var duration = window.DOM.duration;
 
   var DATA = window.PORTFOLIO_DATA || {};
   var PROFILE = DATA.profile || {};
@@ -185,7 +186,7 @@
      column, and printing it twice is just noise. */
   function expPost(post, nested) {
     var meta = nested
-      ? [post.type, post.period, post.duration, post.place].filter(Boolean).join(" · ")
+      ? [post.type, post.period, duration(post.period), post.place].filter(Boolean).join(" · ")
       : "";
     return [
       el("div", { class: "exp-role", text: post.role }),
@@ -211,11 +212,12 @@
 
   function renderExperience() {
     mount("exp-list", (DATA.experience || []).map(function (e) {
+      var span = duration(e.period);
       return el("div", { class: "blueprint exp" }, [
         el("div", null, [
           el("div", { class: "exp-org", text: e.org }),
           el("div", { class: "exp-period", text: e.period }),
-          e.duration ? el("div", { class: "exp-place", text: e.duration }) : null,
+          span ? el("div", { class: "exp-place", text: span }) : null,
           el("div", { class: "exp-place", text: e.place })
         ]),
         el("div", null, expBody(e)),

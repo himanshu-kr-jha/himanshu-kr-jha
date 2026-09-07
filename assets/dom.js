@@ -40,6 +40,49 @@
 
   function pad(n) { return String(n).padStart(2, "0"); }
 
+  /* Months since the epoch, from a "2026.01" token. Null for anything else,
+     which is how `duration` decides it cannot answer. */
+  function monthIndex(token) {
+    var m = String(token).match(/(\d{4})\s*[.\-\/]\s*(\d{1,2})/);
+    return m ? Number(m[1]) * 12 + (Number(m[2]) - 1) : null;
+  }
+
+  /* How long a stint ran, from the period alone: "2026.01 — 2026.07" → "7 mos",
+     "2026.08 — present" → counted to today, so it stays true without anyone
+     remembering to edit it.
+
+     Both endpoints count. January to July is seven months to everyone who
+     isn't a computer, and this number sits next to a job title, not in a
+     ledger.
+
+     Returns "" for a period it cannot parse — a stint written in some other
+     format then shows no duration, rather than a confidently wrong one. */
+  function duration(period, now) {
+    if (!period) return "";
+    var parts = String(period).split(/[—–-]/);
+    if (parts.length < 2) return "";
+
+    var start = monthIndex(parts[0]);
+    if (start === null) return "";
+
+    var end;
+    if (/present|now|current/i.test(parts[1])) {
+      var today = now || new Date();
+      end = today.getFullYear() * 12 + today.getMonth();
+    } else {
+      end = monthIndex(parts[1]);
+    }
+    if (end === null || end < start) return "";
+
+    var months = end - start + 1;
+    var years = Math.floor(months / 12);
+    var rest = months % 12;
+    var out = [];
+    if (years) out.push(years + (years === 1 ? " yr" : " yrs"));
+    if (rest || !years) out.push(rest + (rest === 1 ? " mo" : " mos"));
+    return out.join(" ");
+  }
+
   /* Builds a mailto: with the message already written, from a template in
      portfolio-data.js. Returns "" without an address, so a caller can tell the
      difference between "no link" and "a link that goes nowhere". */
@@ -114,6 +157,7 @@
 
   window.DOM = {
     el: el, corners: corners, pad: pad, mount: mount, append: append,
-    revealCurrent: revealCurrent, reveal: reveal, mailtoDraft: mailtoDraft
+    revealCurrent: revealCurrent, reveal: reveal, mailtoDraft: mailtoDraft,
+    duration: duration
   };
 })(window);

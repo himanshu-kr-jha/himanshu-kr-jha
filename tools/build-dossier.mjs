@@ -97,15 +97,20 @@ function buildDossier(data) {
 
   /* An entry with `roles` is several posts at one company. Each post becomes
      its own section so the assistant can answer about one of them, and each
-     carries the company span so it can also say they were held back to back. */
+     carries the company span so it can also say they were held back to back.
+
+     Periods go in, computed durations stay out. This file is a snapshot taken
+     at build time, so a "2 mos" written here would keep saying "2 mos" long
+     after it stopped being true. The page computes that live; the assistant
+     gets the dates and can do the arithmetic itself. */
   (data.experience || []).forEach((e) => {
     const posts = (e.roles || []).length ? e.roles : [e];
     posts.forEach((post) => {
-      const when = [post.period, post.duration, post.place || e.place].filter(Boolean).join(" · ");
+      const when = [post.period, post.place || e.place].filter(Boolean).join(" · ");
       out.push(section(`Experience — ${post.role}${post.type ? `, ${post.type}` : ""} at ${e.org}`, [
         `When: ${when}`,
         (e.roles || []).length
-          ? `Part of a continuous stint at ${e.org}: ${e.period}${e.duration ? ` · ${e.duration}` : ""} · ${e.place}`
+          ? `Part of a continuous stint at ${e.org}: ${e.period} · ${e.place}`
           : "",
         ...(post.bullets || []).map((b) => `- ${b}`),
         (post.tags || []).length ? `Tech: ${post.tags.join(", ")}` : ""
