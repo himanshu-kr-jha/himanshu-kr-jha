@@ -59,7 +59,7 @@ function buildDossier(data) {
     `Located: ${(p.kicker || []).join(" · ")}`,
     `Positioning: ${p.pitch || ""}`,
     `Summary: ${p.summary || ""}`,
-    `Email: ${p.email} | Phone: ${p.phone}`,
+    p.phone ? `Email: ${p.email} | Phone: ${p.phone}` : `Email: ${p.email}`,
     `LinkedIn: ${p.linkedin} | GitHub: ${p.github}`
   ]));
 
