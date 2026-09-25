@@ -16,174 +16,199 @@
   <meta property="og:image"
     content="https://raw.githubusercontent.com/himanshu-kr-jha/portfolio-himanshu/refs/heads/main/thumbnail.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#f2f2f3">
+  <meta name="theme-color" content="#F3F0E8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121412" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="logo-color.svg">
-  <link rel="stylesheet" href="assets/blueprint.css">
+  <link rel="preload" href="assets/fonts/instrument-serif-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-sans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <script src="assets/theme.js"></script>
+  <link rel="stylesheet" href="assets/site.css">
 </head>
 
 <body>
-  <div class="sheet">
+  <a class="skip" href="#main">Skip to content</a>
 
-    <aside class="rail">
-      <div>
-        <div class="rail-name" id="rail-name">Himanshu Kumar Jha</div>
-      </div>
-      <nav class="rail-nav" id="rail-nav" aria-label="Sections">
-        <a href="#hero">00 · Intro</a>
-        <a href="#work">01 · Selected work</a>
-        <a href="#more">02 · More projects</a>
-        <a href="#experience">03 · Experience</a>
-        <a href="#skills">04 · Skills</a>
-        <a href="#writing">05 · Writing</a>
-        <a href="#ask">06 · Ask about me</a>
-        <a href="#contact">07 · Contact</a>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#hero">
+        <span class="brand-name" id="brand-name"></span>
+        <span class="brand-run" id="brand-run"></span>
+      </a>
+      <nav class="topnav" id="topnav" aria-label="Sections">
+        <a href="#experience">Experience</a>
+        <a href="#work">Work</a>
+        <a href="#more">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#writing">Writing</a>
+        <a href="#ask">Ask</a>
+        <a href="#contact">Contact</a>
       </nav>
-      <a id="rail-resume" href="Himanshu-Kumar-Jha-Resume.pdf" target="_blank" rel="noopener"
-        class="btn btn-primary blueprint rail-foot">Resume<i class="corner tl"></i><i class="corner tr"></i><i
-          class="corner bl"></i><i class="corner br"></i></a>
-    </aside>
+      <div class="top-actions">
+        <button type="button" class="theme-btn" data-theme-toggle aria-label="Switch colour theme">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+            aria-hidden="true">
+            <path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"></path>
+          </svg><span data-theme-label>Dark</span>
+        </button>
+        <a class="btn btn-ink" id="top-resume" href="Himanshu-Kumar-Jha-Resume.pdf" target="_blank"
+          rel="noopener">Résumé</a>
+      </div>
+    </div>
+  </header>
 
-    <main class="sheet-main">
-
+  <main id="main">
+    <div class="wrap">
       <noscript>
-        <p class="noscript-note">This sheet draws itself from <code>assets/portfolio-data.js</code> in the browser.
-          Without JavaScript, the resume linked in the left rail carries the same content —
+        <p class="noscript-note">This page draws itself from <code>assets/portfolio-data.js</code> in the browser.
+          Without JavaScript, the résumé linked above carries the same content —
           or write to himanshukrjha004@gmail.com.</p>
       </noscript>
 
-      <section id="hero" class="section">
-        <div class="hero-kicker" id="hero-kicker"></div>
-        <h1 class="hero-title" id="hero-title"></h1>
-        <div class="hero-rule"><span></span></div>
-        <p class="hero-pitch" id="hero-pitch"></p>
-        <p class="hero-summary" id="hero-summary"></p>
-        <div class="hero-actions">
-          <a class="btn btn-primary blueprint" id="hero-mail" href="#">Start a conversation<i class="corner tl"></i><i
-              class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></a>
-          <a class="btn btn-secondary" id="hero-resume" href="Himanshu-Kumar-Jha-Resume.pdf" target="_blank"
-            rel="noopener">Resume</a>
+      <section id="hero" class="hero">
+        <div class="hero-copy">
+          <div class="hero-id">
+            <span class="status" id="hero-status"></span>
+            <div class="hero-kicker" id="hero-kicker"></div>
+          </div>
+          <h1 class="hero-title" id="hero-title"></h1>
+          <p class="hero-pitch" id="hero-pitch"></p>
+          <p class="hero-summary" id="hero-summary"></p>
+          <div class="hero-actions">
+            <a class="btn btn-accent" id="hero-mail" href="#contact">Email me</a>
+            <div class="hero-actions-sub">
+              <a class="btn btn-line" id="hero-github" href="#" target="_blank" rel="noopener">GitHub</a>
+              <a class="btn btn-line" id="hero-linkedin" href="#" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+          </div>
         </div>
-        <div class="hero-grid" id="hero-grid"></div>
+
+        <figure class="loss" id="loss">
+          <div class="loss-head">
+            <span>career / loss</span>
+            <div class="loss-legend" aria-hidden="true">
+              <span><i class="swatch-train"></i>train</span>
+              <span><i class="swatch-val"></i>val</span>
+            </div>
+          </div>
+          <div id="loss-plot"></div>
+          <figcaption class="loss-caption" id="loss-caption"></figcaption>
+        </figure>
+      </section>
+
+      <section class="stats" id="stats" aria-label="At a glance"></section>
+
+      <section id="experience" class="section">
+        <div class="sec-head">
+          <span class="sec-code">01 checkpoints</span>
+          <h2>Experience, saved every epoch</h2>
+        </div>
+        <div id="exp-list"></div>
       </section>
 
       <section id="work" class="section">
         <div class="sec-head">
-          <span class="sec-num">01</span>
-          <h2>Selected work</h2>
-          <span class="sec-note">Three built to depth</span>
+          <span class="sec-code">02 eval</span>
+          <h2>Selected work, scored on what it shipped</h2>
         </div>
         <div id="work-list"></div>
       </section>
 
       <section id="more" class="section">
         <div class="sec-head">
-          <span class="sec-num">02</span>
-          <h2>More projects</h2>
-          <span class="sec-note">Click a row to expand</span>
+          <span class="sec-code">03 ablations</span>
+          <h2>Other runs worth logging</h2>
         </div>
-        <div class="rows" id="project-rows"></div>
+        <div class="abl">
+          <div class="abl-head" aria-hidden="true">
+            <span>run</span><span>project</span><span>stack</span><span>result</span><span>link</span>
+          </div>
+          <div id="project-rows"></div>
+        </div>
       </section>
 
-      <section id="experience" class="section">
-        <div class="sec-head">
-          <span class="sec-num">03</span>
-          <h2>Experience</h2>
+      <section id="skills" class="section weights">
+        <div class="sec-head weights-head">
+          <span class="sec-code">04 weights</span>
+          <h2>What the model has learned</h2>
         </div>
-        <div class="exp-list" id="exp-list"></div>
-      </section>
-
-      <section id="skills" class="section">
-        <div class="sec-head">
-          <span class="sec-num">04</span>
-          <h2>Skills</h2>
-        </div>
-        <table class="table specs-table">
-          <tbody id="specs-body"></tbody>
-        </table>
+        <dl class="weights-list" id="specs-list"></dl>
       </section>
 
       <section id="writing" class="section">
         <div class="sec-head">
-          <span class="sec-num">05</span>
-          <h2>Writing</h2>
+          <span class="sec-code">05 logs</span>
+          <h2>Field notes from the run</h2>
         </div>
-        <div class="notes-grid" id="notes-grid"></div>
-      </section>
-
-      <section id="github" class="section">
-        <div class="blueprint gh-plate">
-          <div class="gh-head">
-            <h2>GitHub activity</h2>
-            <a id="gh-link" href="https://github.com/himanshu-kr-jha" target="_blank" rel="noopener"></a>
-          </div>
-          <img id="gh-chart" class="gh-chart" src="" alt="GitHub contribution graph" loading="lazy">
-          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-        </div>
+        <div class="logs" id="notes-grid"></div>
       </section>
 
       <section id="ask" class="section">
         <div class="sec-head">
-          <span class="sec-num">06</span>
-          <h2>Ask about me</h2>
-          <span class="sec-note">Answers drawn only from this page</span>
+          <span class="sec-code">06 inference</span>
+          <h2>Ask the model about me</h2>
         </div>
-        <div class="blueprint ask-panel">
+        <div class="ask">
+          <div class="ask-head">
+            <span class="live">prompt</span>
+            <span>answers drawn only from this page</span>
+          </div>
           <div class="ask-log" id="ask-log" role="log" aria-live="polite"></div>
-          <div class="ask-chips" id="ask-chips"></div>
-          <form class="ask-form" id="ask-form">
-            <input id="ask-input" name="q" class="input" autocomplete="off"
-              aria-label="Ask a question about my work" placeholder="Ask a question about my work…">
-            <button type="submit" class="btn btn-primary" id="ask-send">Ask</button>
-          </form>
-          <span class="ask-note" id="ask-note"></span>
-          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-        </div>
-      </section>
-
-      <section id="contact" class="contact">
-        <div>
-          <span class="sec-num">07</span>
-          <span class="tag tag-accent contact-availability" id="contact-availability"></span>
-          <h2 id="contact-heading"></h2>
-          <p class="contact-body" id="contact-body"></p>
-          <div class="contact-links">
-            <a id="contact-email" href="#"></a>
-            <a id="contact-phone" href="#"></a>
-            <a id="contact-linkedin" href="#" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <div class="ask-foot">
+            <div class="ask-chips" id="ask-chips"></div>
+            <form class="ask-form" id="ask-form">
+              <input id="ask-input" name="q" class="input" autocomplete="off"
+                aria-label="Ask a question about my work" placeholder="Ask a question about my work…">
+              <button type="submit" class="btn btn-ink" id="ask-send">Ask</button>
+            </form>
+            <span class="ask-note" id="ask-note"></span>
           </div>
         </div>
-        <form class="blueprint contact-form" id="contact-form">
-          <label>
+      </section>
+    </div>
+
+    <section id="contact" class="serve">
+      <div class="wrap serve-inner">
+        <div class="serve-copy">
+          <span class="sec-code">07 serve</span>
+          <div class="serve-status" id="contact-availability"></div>
+          <h2 class="serve-title" id="contact-heading"></h2>
+          <p class="serve-body" id="contact-body"></p>
+          <div class="serve-links" id="contact-links"></div>
+        </div>
+        <form class="serve-form" id="contact-form">
+          <label class="field">
             <span>Name</span>
-            <input name="name" class="input" required>
+            <input name="name" class="input" autocomplete="name" required>
           </label>
-          <label>
+          <label class="field">
             <span>Email</span>
-            <input name="email" type="email" class="input" required>
+            <input name="email" type="email" class="input" autocomplete="email" required>
           </label>
-          <label>
-            <span>Message</span>
-            <textarea name="message" rows="4" class="input" required></textarea>
+          <label class="field">
+            <span>What are you working on?</span>
+            <textarea name="message" rows="5" class="input" required></textarea>
           </label>
           <!-- Honeypot: real people never see it, bots fill it in. -->
           <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off"
             aria-hidden="true">
-          <button type="submit" class="btn btn-primary btn-block" id="contact-submit">Send message</button>
+          <button type="submit" class="btn btn-ink" id="contact-submit">Send message</button>
           <span class="form-note" id="form-note" role="status" aria-live="polite"></span>
-          <a class="btn btn-secondary" id="form-fallback" href="#" hidden>Open in your mail app instead</a>
-          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <a class="btn btn-line" id="form-fallback" href="#" hidden>Open in your mail app instead</a>
         </form>
-      </section>
+      </div>
+    </section>
+  </main>
 
-      <footer class="sheet-foot">
-        <span id="foot-credit">© 2026 Himanshu Kumar Jha · Sheet 01 of 01</span>
-        <nav id="foot-links"></nav>
-      </footer>
-    </main>
-  </div>
+  <footer class="foot is-panel">
+    <div class="wrap foot-inner">
+      <span id="foot-credit">© 2026 Himanshu Kumar Jha</span>
+      <span class="foot-tag">training continues</span>
+    </div>
+  </footer>
 
   <script src="assets/portfolio-data.js"></script>
   <script src="assets/dom.js"></script>
+  <script src="assets/art.js"></script>
   <script src="assets/ask.js"></script>
   <script src="assets/ask-config.js"></script>
   <script src="assets/ask-remote.js"></script>

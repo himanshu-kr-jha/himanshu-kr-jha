@@ -1,4 +1,4 @@
-/* Tiny DOM builder shared by index.html and blog.html.
+/* Tiny DOM builder shared by index.html, case.html and blog.html.
    Everything goes through textContent, so content from portfolio-data.js is
    never parsed as markup. */
 (function (window) {
@@ -31,11 +31,37 @@
     return node;
   }
 
-  /* The four registration marks every .blueprint object wears. */
-  function corners() {
-    return ["tl", "tr", "bl", "br"].map(function (pos) {
-      return el("i", { class: "corner " + pos });
+  /* el() for SVG, which needs its own namespace. */
+  var SVG_NS = "http://www.w3.org/2000/svg";
+  function svg(tag, attrs, children) {
+    var node = document.createElementNS(SVG_NS, tag);
+    Object.keys(attrs || {}).forEach(function (key) {
+      var value = attrs[key];
+      if (value === null || value === undefined || value === false) return;
+      if (key === "text") node.textContent = value;
+      else node.setAttribute(key, String(value));
     });
+    append(node, children);
+    return node;
+  }
+
+  /* A heading whose closing words are set in accent italic: "…into working
+     products" with tail "working products". A full stop is added when the
+     text has no closing punctuation of its own. A tail that doesn't match the
+     end of the text is ignored, so a stale hint can never garble a heading. */
+  function accentTail(text, tail) {
+    text = String(text || "");
+    var stop = /[.!?…]$/.test(text) ? "" : ".";
+    if (!tail || text.slice(-tail.length) !== tail) return [text + stop];
+    return [text.slice(0, -tail.length), el("em", { text: tail + stop })];
+  }
+
+  /* "Himanshu Kumar Jha" → "Himanshu K. Jha", for the narrow top bar. */
+  function shortName(name) {
+    var parts = String(name || "").trim().split(/\s+/);
+    if (parts.length < 3) return parts.join(" ");
+    return [parts[0]].concat(parts.slice(1, -1).map(function (p) { return p.charAt(0) + "."; }),
+      parts[parts.length - 1]).join(" ");
   }
 
   function pad(n) { return String(n).padStart(2, "0"); }
@@ -101,16 +127,6 @@
     return "mailto:" + email + (query.length ? "?" + query.join("&") : "");
   }
 
-  /* On narrow screens the rail index is a horizontal strip; if the current
-     entry sits past its right edge you land on a page with no visible marker
-     of where you are. Centre it once, on load. */
-  function revealCurrent(container) {
-    var node = typeof container === "string" ? document.getElementById(container) : container;
-    var current = node && node.querySelector(".is-current");
-    if (!current || node.scrollWidth <= node.clientWidth) return;
-    node.scrollLeft = Math.max(0, current.offsetLeft - (node.clientWidth - current.offsetWidth) / 2);
-  }
-
   function mount(target, children) {
     var node = typeof target === "string" ? document.getElementById(target) : target;
     if (!node) return null;
@@ -156,8 +172,8 @@
   }
 
   window.DOM = {
-    el: el, corners: corners, pad: pad, mount: mount, append: append,
-    revealCurrent: revealCurrent, reveal: reveal, mailtoDraft: mailtoDraft,
-    duration: duration
+    el: el, svg: svg, pad: pad, mount: mount, append: append,
+    reveal: reveal, mailtoDraft: mailtoDraft, duration: duration,
+    monthIndex: monthIndex, accentTail: accentTail, shortName: shortName
   };
 })(window);

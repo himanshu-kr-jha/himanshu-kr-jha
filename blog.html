@@ -6,66 +6,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Writing | Himanshu Kumar Jha</title>
   <meta name="description" content="Field notes on backend, inference platforms, container pipelines and computer vision.">
-  <meta name="theme-color" content="#f2f2f3">
+  <meta name="theme-color" content="#F3F0E8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121412" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="logo-color.svg">
-  <link rel="stylesheet" href="assets/blueprint.css">
+  <link rel="preload" href="assets/fonts/instrument-serif-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-sans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <script src="assets/theme.js"></script>
+  <link rel="stylesheet" href="assets/site.css">
 </head>
 
 <body>
-  <div class="sheet">
+  <a class="skip" href="#main">Skip to content</a>
 
-    <aside class="rail">
-      <a class="rail-name" href="index.html">Himanshu<br>Kumar Jha</a>
+  <header class="topbar">
+    <div class="wrap topbar-inner subbar-inner">
+      <a class="back" href="index.html#writing">← All field notes</a>
+      <a class="brand-name" href="index.html" id="brand-name">Himanshu Kumar Jha</a>
+      <button type="button" class="theme-btn" data-theme-toggle aria-label="Switch colour theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+          aria-hidden="true">
+          <path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"></path>
+        </svg><span data-theme-label>Dark</span>
+      </button>
+    </div>
+  </header>
 
-      <div class="blueprint rail-spec">
-        <div class="rail-spec-label">Specification</div>
-        <div class="rail-spec-row">Filed under<br><strong id="filed-under"></strong></div>
-        <div class="rail-spec-row is-num">Read time<br><strong id="read-time"></strong></div>
-        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-      </div>
+  <main id="main" class="wrap note page-end">
+    <noscript>
+      <p class="noscript-note">These notes are drawn from <code>assets/portfolio-data.js</code> in the browser.
+        Enable JavaScript, or read the summaries on the <a href="index.html#writing">portfolio</a>.</p>
+    </noscript>
 
-      <div class="rail-group">
-        <div class="rail-spec-label">All writing</div>
-        <div class="rail-index" id="note-index"></div>
-      </div>
+    <article class="note-article">
+      <div class="note-meta"><span id="note-code"></span><span id="note-tags"></span></div>
+      <h1 class="note-title" id="note-title"></h1>
+      <p class="note-lede" id="note-lede"></p>
+      <div class="byline"><span id="note-by"></span><span id="note-read"></span></div>
+      <div class="note-body" id="note-paragraphs"></div>
+    </article>
 
-      <a href="index.html#writing" class="btn btn-secondary rail-foot">← Back to portfolio</a>
-    </aside>
-
-    <main class="note-main">
-      <noscript>
-        <p class="noscript-note">These notes are drawn from <code>assets/portfolio-data.js</code> in the browser.
-          Enable JavaScript, or read the summaries on the <a href="index.html#writing">portfolio sheet</a>.</p>
-      </noscript>
-
-      <article>
-        <div class="note-meta">
-          <span id="note-label"></span><span>·</span><span id="note-status"></span>
-          <span class="meta-mobile" id="read-time-inline"></span>
+    <section class="note-end">
+      <div class="reply">
+        <div class="reply-copy">
+          <span>Thoughts on this, or a similar problem of your own?</span>
+          <span class="mail-fallback" id="note-reply-note"></span>
         </div>
-        <h1 class="note-h1" id="note-title"></h1>
-        <div class="note-rule"></div>
-        <p class="note-lede" id="note-lede"></p>
-        <div class="note-tags" id="note-tags"></div>
+        <a class="btn btn-accent btn-sm" id="note-reply" href="#">Reply by email</a>
+      </div>
+      <nav class="more-notes" id="note-index" aria-label="More notes"></nav>
+    </section>
+  </main>
 
-        <div class="note-body">
-          <div id="note-paragraphs"></div>
-          <div class="note-actions">
-            <a class="btn btn-primary blueprint" id="note-next" href="index.html#writing"><span
-                id="note-next-label"></span><i class="corner tl"></i><i class="corner tr"></i><i
-                class="corner bl"></i><i class="corner br"></i></a>
-            <a class="btn btn-secondary" id="note-reply" href="#">Reply by email</a>
-          </div>
-          <p class="mail-fallback" id="note-reply-note"></p>
-        </div>
-      </article>
-
-      <footer class="sheet-foot">
-        <span id="foot-credit"></span>
-        <nav><a href="index.html">Back to portfolio</a></nav>
-      </footer>
-    </main>
-  </div>
+  <footer class="foot">
+    <div class="wrap foot-inner">
+      <span id="foot-credit"></span>
+      <a href="index.html">Portfolio</a>
+    </div>
+  </footer>
 
   <script src="assets/portfolio-data.js"></script>
   <script src="assets/dom.js"></script>

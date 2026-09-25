@@ -7,74 +7,81 @@
   <title>Case study | Himanshu Kumar Jha</title>
   <meta name="description"
     content="How it was built — context, constraints, approach and outcome for a project by Himanshu Kumar Jha.">
-  <meta name="theme-color" content="#f2f2f3">
+  <meta name="theme-color" content="#F3F0E8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121412" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="logo-color.svg">
-  <link rel="stylesheet" href="assets/blueprint.css">
+  <link rel="preload" href="assets/fonts/instrument-serif-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-sans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <script src="assets/theme.js"></script>
+  <link rel="stylesheet" href="assets/site.css">
 </head>
 
 <body>
-  <div class="sheet">
+  <a class="skip" href="#main">Skip to content</a>
 
-    <aside class="rail">
-      <a class="rail-name" href="index.html">Himanshu<br>Kumar Jha</a>
+  <header class="topbar">
+    <div class="wrap topbar-inner subbar-inner">
+      <a class="back" href="index.html#work">← Back to portfolio</a>
+      <a class="brand-name" href="index.html" id="brand-name">Himanshu Kumar Jha</a>
+      <button type="button" class="theme-btn" data-theme-toggle aria-label="Switch colour theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+          aria-hidden="true">
+          <path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"></path>
+        </svg><span data-theme-label>Dark</span>
+      </button>
+    </div>
+  </header>
 
-      <div class="blueprint rail-spec">
-        <div class="rail-spec-label">Specification</div>
-        <div class="rail-spec-row">Role<br><strong id="cs-role"></strong></div>
-        <div class="rail-spec-row is-num">Stack<br><strong id="cs-stack"></strong></div>
-        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+  <main id="main">
+    <div class="case-hero-wrap">
+      <div class="wrap case-hero">
+        <noscript>
+          <p class="noscript-note" style="grid-column: 1 / -1">This page is drawn from
+            <code>assets/portfolio-data.js</code> in the browser. Enable JavaScript, or read the project summaries
+            on the <a href="index.html#work">portfolio</a>.</p>
+        </noscript>
+        <div class="case-kicker"><span id="cs-code"></span><span id="cs-kicker"></span></div>
+        <h1 class="case-title" id="cs-title"></h1>
+        <p class="case-summary" id="cs-summary"></p>
+        <dl class="case-facts" id="cs-facts"></dl>
       </div>
+    </div>
 
-      <div class="rail-group">
-        <div class="rail-spec-label">Case studies</div>
-        <div class="rail-index" id="cs-index"></div>
-      </div>
+    <div class="wrap case-body">
+      <nav class="toc" id="cs-toc" aria-label="On this page"></nav>
+      <article class="case-article" id="cs-sections"></article>
+    </div>
 
-      <a href="index.html#work" class="btn btn-secondary rail-foot">← Back to selected work</a>
-    </aside>
-
-    <main class="note-main">
-      <noscript>
-        <p class="noscript-note">This sheet is drawn from <code>assets/portfolio-data.js</code> in the browser.
-          Enable JavaScript, or read the project summaries on the
-          <a href="index.html#work">portfolio sheet</a>.</p>
-      </noscript>
-
-      <article>
-        <div class="note-meta">
-          <span id="cs-kicker"></span>
-          <span class="meta-mobile" id="cs-role-inline"></span>
-        </div>
-        <h1 class="note-h1" id="cs-title"></h1>
-        <div class="note-rule"></div>
-        <p class="note-lede" id="cs-summary"></p>
-        <div class="note-tags" id="cs-tags"></div>
-
-        <div class="cs-metrics" id="cs-metrics"></div>
-
-        <div class="note-body">
-          <div id="cs-sections"></div>
-
-          <div class="note-actions">
-            <a class="btn btn-primary blueprint" id="cs-next" href="index.html#work"><span id="cs-next-label"></span><i
-                class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></a>
-            <a class="btn btn-secondary" id="cs-live" href="#" target="_blank" rel="noopener" hidden>Visit the live
+    <div class="case-cta-wrap">
+      <div class="wrap case-cta">
+        <div class="case-cta-copy">
+          <h2>Working on something like this?</h2>
+          <p id="cs-note"></p>
+          <div class="case-cta-actions">
+            <a class="btn btn-accent" id="cs-contact" href="#">Talk about work like this</a>
+            <a class="btn btn-line" id="cs-live" href="#" target="_blank" rel="noopener" hidden>Visit the live
               site ↗</a>
-            <a class="btn btn-secondary" id="cs-contact" href="#">Talk about work like this</a>
           </div>
           <p class="mail-fallback" id="cs-contact-note"></p>
         </div>
-      </article>
+        <a class="next-link" id="cs-next" href="index.html#work">
+          <span class="k" id="cs-next-kicker">Next case study</span>
+          <span class="t" id="cs-next-label"></span>
+        </a>
+      </div>
+    </div>
+  </main>
 
-      <footer class="sheet-foot">
-        <span id="foot-credit"></span>
-        <nav><a href="index.html">Back to portfolio</a></nav>
-      </footer>
-    </main>
-  </div>
+  <footer class="foot">
+    <div class="wrap foot-inner">
+      <span id="foot-credit"></span>
+      <a href="index.html#work">All work</a>
+    </div>
+  </footer>
 
   <script src="assets/portfolio-data.js"></script>
   <script src="assets/dom.js"></script>
+  <script src="assets/art.js"></script>
   <script src="assets/case.js"></script>
 </body>
 

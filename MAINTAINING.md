@@ -5,14 +5,18 @@ Almost everything you'll ever change lives in one file:
 rest. There is no build step, no dependencies, and nothing to install.
 
 ```
-index.html          the portfolio sheet
+index.html          the portfolio page
 case.html           case studies      → case.html?p=<slug>
 blog.html           writing           → blog.html?note=<n>
 index-legacy.html   your previous dark-theme portfolio, kept for reference
 
 assets/
   portfolio-data.js   ← ALL CONTENT LIVES HERE
-  blueprint.css       the Industry design system + page styles
+  site.css            the "Training Run" design: tokens, layout, phone + tablet
+  fonts/              self-hosted IBM Plex Sans/Mono + Instrument Serif
+  theme.js            light/dark toggle, remembered per visitor
+  art.js              project drawings and project icons
+  logos/              square company marks shown beside each post
   dom.js              tiny element builder shared by every page
   portfolio.js        draws index.html
   case.js             draws case.html
@@ -33,6 +37,7 @@ text. Numbering (`P-01`, `P-02`…) is automatic — don't hand-write it.
 ```js
 {
   title: "Thing I built",
+  icon: "cube",
   stack: "Python · Postgres · Docker",
   detail: "One paragraph. What it does and why it was hard.",
   metric: "The number that matters",
@@ -41,10 +46,20 @@ text. Numbering (`P-01`, `P-02`…) is automatic — don't hand-write it.
 }
 ```
 
+`icon` is one of `excavator`, `clock`, `cube`, `moon`, `pin`, `sheet`, `car`.
+Leave it out and the row simply has no icon. To add a new one, add a 24 × 24
+line drawing to `ICONS` in `assets/art.js`.
+
 ## Promote a project to Selected work
 
 Move it into `heroProjects` and give it `kicker`, `paras` (an array of
-paragraphs), `tags`, and `metrics`. Three is the right number of featured
+paragraphs), `tags`, and `metrics`. The first metric is set in the accent
+colour.
+
+`art` picks the drawing shown beside it and at the top of its case study:
+`segments`, `passes` or `site`. A new project needs its own drawing in
+`FIGURES` in `assets/art.js`; until then, leave `art` out and it shows its
+numbers alone. Three is the right number of featured
 projects; a fourth dilutes the other three.
 
 ## Add a case study
@@ -124,9 +139,28 @@ marker as the current post.
 }
 ```
 
+Give each block a `logo` (a square PNG in `assets/logos/`, drawn for a white
+background) and it appears beside every post at that company. `education`
+takes one too.
+
 Only group posts that were actually back to back. Two separate stints at the
 same company, years apart, are two blocks — grouping them would claim a
 continuity that didn't happen.
+
+## The hero, the strip and the loss curve
+
+- `profile.headlineAccent` is the closing words of the headline, set in
+  italic accent. `contact.headingAccent` does the same for the contact
+  heading. Both must match the end of their heading exactly, or are ignored.
+- `stats` is the four-figure strip under the hero.
+- The status pill above the headline shows whichever post has "present" in
+  its period.
+- `education` is checkpoint 00 in Experience and the first dot on the loss
+  curve. Every other dot is a post from `experience`, placed by its start
+  date — add a job and the curve gains a checkpoint on its own.
+
+The page draws every post as its own checkpoint (`ckpt-04 · latest` down to
+`ckpt-00 · init`), including posts grouped under one company's `roles`.
 
 ## Update the résumé
 
@@ -193,7 +227,10 @@ Then open <http://localhost:8777/>.
 
 ## Design source
 
-The visual language came from the **Industry** design system in your Claude
-Design project ("Portfolio creation project"). `assets/blueprint.css` carries
-its tokens verbatim at the top — retune the `:root` block there to reskin the
-whole site, and don't hard-code a colour or font that a token already covers.
+The visual language is the **Training Run** design ("Portfolio — Training
+Run", desktop and mobile boards). `assets/site.css` carries its tokens at the
+top — retune the `:root` block (and its dark twin) to reskin the whole site,
+and don't hard-code a colour or font that a token already covers.
+
+Light or dark follows the visitor's system until they press the toggle; the
+choice is then remembered in their browser.

@@ -172,7 +172,23 @@
     var profile = data.profile || {};
     var records = { experience: [], projects: [], notes: [], skills: [] };
 
-    (data.experience || []).forEach(function (job, i) {
+    /* A block with `roles` is several posts at one company; each post is its
+       own record, carrying the company from the block around it. */
+    var jobs = [];
+    (data.experience || []).forEach(function (e) {
+      if (!(e.roles || []).length) { jobs.push(e); return; }
+      e.roles.forEach(function (post) {
+        jobs.push({
+          org: e.org,
+          role: post.role + (/intern/i.test(post.type || "") ? ", Intern" : ""),
+          period: post.period || e.period,
+          place: [post.place, e.place].filter(Boolean).join(", "),
+          bullets: post.bullets || [],
+          tags: post.tags || []
+        });
+      });
+    });
+    jobs.forEach(function (job, i) {
       records.experience.push({
         title: job.org + " " + job.role,
         terms: [job.org, job.role, job.period, job.place, (job.bullets || []).join(" "), (job.tags || []).join(" ")].join(" "),

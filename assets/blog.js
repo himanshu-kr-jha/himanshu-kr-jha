@@ -1,4 +1,4 @@
-/* One note sheet, selected by ?note=<index> against PORTFOLIO_DATA.notes. */
+/* One note page, selected by ?note=<index> against PORTFOLIO_DATA.notes. */
 (function (window, document) {
   "use strict";
 
@@ -29,41 +29,39 @@
   var note = NOTES[i] || {};
   var body = note.body || [];
   var words = body.join(" ").split(/\s+/).filter(Boolean).length;
-  var next = NOTES.length > 1 ? (i + 1) % NOTES.length : -1;
 
   document.title = (note.title || "Writing") + " | " + (PROFILE.name || "");
+  var description = document.querySelector('meta[name="description"]');
+  if (description && note.summary) description.setAttribute("content", note.summary);
 
-  set("note-label", "Note " + pad(i + 1));
-  set("note-status", note.status || "Draft");
+  set("brand-name", PROFILE.name);
+  set("note-code", "log " + pad(i + 1) + " · " + String(note.status || "Note").toLowerCase());
+  set("note-tags", (note.tags || []).join(" · "));
   set("note-title", note.title || "Untitled note");
-  set("note-lede", note.summary);
-  set("filed-under", (note.tags || []).slice(0, 2).join(" · ") || "Engineering");
-  var readTime = words ? "~" + Math.max(1, Math.round(words / 200)) + " min" : "—";
-  set("read-time", readTime);
-  /* Same fact, shown in the article where the rail's spec plate is dropped. */
-  set("read-time-inline", words ? readTime + " read" : "");
-
-  mount("note-tags", (note.tags || []).map(function (t) {
-    return el("span", { class: "tag tag-outline", text: t });
-  }));
+  var lede = set("note-lede", note.summary);
+  if (lede && !note.summary) lede.remove();
+  set("note-by", "By " + (PROFILE.name || ""));
+  set("note-read", words ? "~" + Math.max(1, Math.round(words / 200)) + " min read" : "");
 
   mount("note-paragraphs", body.map(function (p) {
     return el("p", { text: p });
   }));
 
-  mount("note-index", NOTES.map(function (n, k) {
-    return el("a", {
-      class: k === i ? "is-current" : null,
-      href: PAGE + "?note=" + k,
-      text: n.title
-    });
-  }));
-  window.DOM.revealCurrent("note-index");
-
-  var nextLink = document.getElementById("note-next");
-  if (nextLink) {
-    nextLink.setAttribute("href", next >= 0 ? PAGE + "?note=" + next : "index.html#writing");
-    set("note-next-label", next >= 0 ? "Next: " + NOTES[next].title : "More writing");
+  /* Every other note, in order, starting after this one. */
+  var others = [];
+  for (var k = 1; k < NOTES.length; k++) others.push((i + k) % NOTES.length);
+  var index = document.getElementById("note-index");
+  if (index) {
+    if (others.length) {
+      mount(index, [el("span", { class: "k", text: "More notes" })].concat(others.map(function (n) {
+        return el("a", { href: PAGE + "?note=" + n }, [
+          el("span", { class: "t", text: NOTES[n].title }),
+          el("span", { class: "arrow", "aria-hidden": "true", text: "→" })
+        ]);
+      })));
+    } else {
+      index.remove();
+    }
   }
 
   var reply = document.getElementById("note-reply");
@@ -74,16 +72,13 @@
   }
   var replyNote = document.getElementById("note-reply-note");
   if (replyNote && PROFILE.email) {
-    replyNote.textContent = "";
-    replyNote.appendChild(document.createTextNode("Or write to "));
-    replyNote.appendChild(el("a", { href: "mailto:" + PROFILE.email, text: PROFILE.email }));
-    replyNote.appendChild(document.createTextNode(" directly."));
+    mount(replyNote, ["Or write to ", el("a", { href: "mailto:" + PROFILE.email, text: PROFILE.email }), " directly."]);
   }
 
   set("foot-credit", "© " + new Date().getFullYear() + " " + (PROFILE.name || ""));
 
   window.DOM.reveal([
-    ".note-meta", ".note-h1", ".note-lede", ".note-tags",
-    ".note-body p", ".note-actions", ".sheet-foot"
+    ".note-meta", ".note-title", ".note-lede", ".byline",
+    ".note-body p", ".reply", ".more-notes a"
   ]);
 })(window, document);

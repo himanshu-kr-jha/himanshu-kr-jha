@@ -13,6 +13,9 @@ window.PORTFOLIO_DATA = {
     // sheet: "SHEET 01 / REV 2026.08",
     kicker: ["Software engineer", "New Delhi, India"],
     headline: "I build things that turn models and data into working products",
+    // The closing words of the headline, set in italic accent. Must match the
+    // end of `headline` exactly; leave blank for a plain headline.
+    headlineAccent: "working products",
     // One line under the headline: who you do it for. Recruiters and clients
     // read this before anything else on the page.
     pitch: "I take models and messy data the rest of the way — into services that run in production, with the pipelines, storage and observability around them.",
@@ -25,7 +28,29 @@ window.PORTFOLIO_DATA = {
     githubUser: "himanshu-kr-jha"
   },
 
-  // The three cards under the headline
+  // The four figures in the strip under the headline. `small` trails the
+  // value in a lighter weight; `accent` trails it in the accent colour.
+  stats: [
+    { value: "8.8", small: " / 10", label: "CGPA, B.Tech Software Engineering, DTU" },
+    { value: "10+", label: "containerised services in one real-time CV pipeline" },
+    { value: "95%", label: "precision classifying excavator activity from video" },
+    { value: "ICDAM", accent: "’26", label: "Paper accepted · Springer LNNS · top 20%" }
+  ],
+
+  // Where the run starts: checkpoint 00 in Experience and the first point on
+  // the loss curve. `started` places it on the curve.
+  education: {
+    degree: "B.Tech Software Engineering",
+    school: "Delhi Technological University",
+    logo: "assets/logos/dtu.png",
+    short: "B.Tech SE, DTU",
+    started: "2022.08",
+    period: "2022 — 2026",
+    place: "New Delhi",
+    summary: "CGPA 8.8 / 10. Before that, Rashtra Shakti Vidyalaya — XII 94%, X 95.6%."
+  },
+
+  // Facts the on-page assistant reads (Current post, Qualification, Publication).
   titleBlocks: [
     { label: "Current post", title: "AI Engineer · Cognecto", meta: "2026.08 — Present · On-site" },
     { label: "Qualification", title: "B.Tech SE · DTU", meta: "2022 — 2026 · CGPA 8.8 / 10" }
@@ -45,7 +70,10 @@ window.PORTFOLIO_DATA = {
   heroProjects: [
     {
       slug: "voter-segmentation",
-      kicker: "DWG 01 · Election Commission of India",
+      // The drawing beside the project: "segments", "passes" or "site" (see
+      // assets/art.js). Leave it out and the project shows its numbers only.
+      art: "segments",
+      kicker: "Election Commission of India",
       title: "Voter Segmentation & Field-Verification Platform",
       paras: [
         "A deterministic, grid-based geospatial engine that partitions electoral rolls into balanced segments while treating each family as an indivisible atomic unit — zero split households, every time.",
@@ -106,7 +134,8 @@ window.PORTFOLIO_DATA = {
     },
     {
       slug: "compaction-pass-detection",
-      kicker: "DWG 02 · Private client · road telemetry",
+      art: "passes",
+      kicker: "Private client · road telemetry",
       title: "Roller Compaction-Pass Detection",
       paras: [
         "The pass-detection algorithm that computes how many compaction passes a road roller has made per section, straight from raw multi-source telemetry — 1 Hz GPS position fused with roughly two-minute sensor feeds.",
@@ -168,7 +197,8 @@ window.PORTFOLIO_DATA = {
     },
     {
       slug: "strength-mma",
-      kicker: "DWG 03 · Freelance · combat-sports academy",
+      art: "site",
+      kicker: "Freelance · combat-sports academy",
       title: "Strength MMA",
       paras: [
         "A responsive Next.js site built and launched for a combat-sports academy, with on-page SEO carried through semantic markup, meta tags and optimised imagery. Organic search drove 34% of traffic in the first three months."
@@ -221,6 +251,8 @@ window.PORTFOLIO_DATA = {
   projects: [
     {
       title: "Excavator Monitoring System",
+      // One of: excavator, clock, cube, moon, pin, sheet, car (assets/art.js).
+      icon: "excavator",
       stack: "Docker · AWS ECS · Lambda · S3 · Timestream",
       detail: "A resilient, cloud-native AWS workflow that classifies excavator activity from video streams with 95% precision, via a data-ingestion pipeline that segments large-scale surveillance footage into 60-second intervals for continuous utilisation analytics.",
       metric: "95% classification precision",
@@ -229,6 +261,7 @@ window.PORTFOLIO_DATA = {
     },
     {
       title: "ETA Predict",
+      icon: "clock",
       stack: "Python · Gradient Boosting · GCP · Docker",
       detail: "Delivery-time estimates from a Gradient Boosting model (R² 0.81, MAE 6.6 min) behind a serverless MLOps pipeline that drops redeployment from weeks to under seven minutes at under ₹170/month — and swaps in any other model without touching the pipeline.",
       metric: "R² 0.81 · MAE 6.6 min",
@@ -237,6 +270,7 @@ window.PORTFOLIO_DATA = {
     },
     {
       title: "FormerPose — 6D pose estimation",
+      icon: "cube",
       stack: "PyTorch · OpenCV · Point clouds · Transformers",
       detail: "A reproduction of the FormerPose (2024) research model for RGB-D 6D object pose estimation, reaching 0.0667 m mean ADD on LINEMOD with multi-scale transformers, point-cloud fusion and ICP refinement.",
       metric: "0.0667 m mean ADD",
@@ -245,6 +279,7 @@ window.PORTFOLIO_DATA = {
     },
     {
       title: "LogDaily — habit & sleep tracking",
+      icon: "moon",
       stack: "React · Node.js · MongoDB Atlas · Google OAuth",
       detail: "A full-stack habit and sleep tracker with Google OAuth, cloud-synced data and a responsive analytics dashboard — trends, streaks and insights charted from JWT-authenticated MongoDB Atlas data.",
       metric: "Auth to analytics, full stack",
@@ -253,6 +288,7 @@ window.PORTFOLIO_DATA = {
     },
     {
       title: "Destinate It",
+      icon: "pin",
       stack: "Node.js · Express · MongoDB · Bootstrap",
       detail: "A platform for adding and exploring local and famous places, with authentication, role-based access, place tagging, nearby search and filtering — a 10% lift in user engagement after launch.",
       metric: "+10% user engagement",
@@ -261,6 +297,7 @@ window.PORTFOLIO_DATA = {
     },
     {
       title: "Code Ledger",
+      icon: "sheet",
       stack: "JavaScript · Chrome Extension · Google Sheets API",
       detail: "A Chrome extension that logs solved coding problems straight to Google Sheets — title, URL, status and remarks in a single click, so practice history keeps itself.",
       metric: "One-click problem logging",
@@ -269,6 +306,7 @@ window.PORTFOLIO_DATA = {
     },
     {
       title: "Automobile Failure Detection",
+      icon: "car",
       stack: "Scikit-learn · TensorFlow · Pandas · NumPy",
       detail: "A comparative analysis of ML algorithms for predicting automobile failures, lifting predictive accuracy by 25% through advanced preprocessing so maintenance can be scheduled before a breakdown.",
       metric: "+25% predictive accuracy",
@@ -285,6 +323,8 @@ window.PORTFOLIO_DATA = {
     // the flat shape and renders exactly as it always has.
     {
       org: "Cognecto",
+      // A square mark shown beside the post, from assets/logos/.
+      logo: "assets/logos/cognecto.png",
       period: "2026.01 — present",
       place: "Bengaluru, India",
       roles: [
@@ -313,6 +353,7 @@ window.PORTFOLIO_DATA = {
     },
     {
       org: "Accenture",
+      logo: "assets/logos/accenture.png",
       period: "2025.06 — 2025.07",
       place: "On-site · Bengaluru",
       role: "Advanced Application Engineer, Intern",
@@ -324,6 +365,7 @@ window.PORTFOLIO_DATA = {
     },
     {
       org: "Cognecto",
+      logo: "assets/logos/cognecto.png",
       period: "2024.05 — 2024.07",
       place: "Remote · Delhi",
       role: "Machine Learning Engineer, Intern",
@@ -334,7 +376,8 @@ window.PORTFOLIO_DATA = {
     }
   ],
 
-  // 04 · SKILLS
+  // 04 · SKILLS. The "Education" row feeds the assistant; the page shows
+  // education as checkpoint 00 instead, from `education` above.
   specs: [
     { label: "Languages", value: "Python · Java · JavaScript · TypeScript · SQL · C" },
     { label: "Backend", value: "FastAPI · Node.js · Express · REST APIs · WebSockets / WebRTC · async SQLAlchemy · Microservices" },
@@ -404,6 +447,7 @@ window.PORTFOLIO_DATA = {
     // it's the first thing someone deciding whether to write to you will read.
     availability: "Full-time at Cognecto · Open to select freelance",
     heading: "Let's build something that ships",
+    headingAccent: "ships",
     body: "Working full-time on computer-vision infrastructure at Cognecto, and taking on select freelance work alongside it. Backend, computer vision, cloud infrastructure — or anything that needs a model turned into a product.",
 
     // Drafts for the "Talk about work like this" and "Reply by email" buttons.
