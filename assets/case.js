@@ -49,6 +49,21 @@
   var description = document.querySelector('meta[name="description"]');
   if (description && study.summary) description.setAttribute("content", study.summary);
 
+  /* Per-study SEO: canonical and Open Graph reflect the selected project. */
+  (function updateSeo() {
+    var url = "https://himanshukumarjha.netlify.app/case.html?p=" + encodeURIComponent(project.slug);
+    var title = project.title + " | " + (PROFILE.name || "");
+    function metaSet(selector, value) {
+      var el = document.querySelector(selector);
+      if (el && value) el.setAttribute("content", value);
+    }
+    var canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.setAttribute("href", url);
+    metaSet('meta[property="og:url"]', url);
+    metaSet('meta[property="og:title"]', title);
+    metaSet('meta[property="og:description"]', study.summary);
+  })();
+
   /* The same number the project carries on the portfolio's eval list. */
   set("cs-code", "eval " + pad(PROJECTS.indexOf(project) + 1) + " · case study");
   set("cs-kicker", project.kicker);

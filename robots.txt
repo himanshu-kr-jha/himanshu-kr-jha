@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://himanshukumarjha.netlify.app/sitemap.xml
