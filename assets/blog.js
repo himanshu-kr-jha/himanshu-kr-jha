@@ -34,6 +34,21 @@
   var description = document.querySelector('meta[name="description"]');
   if (description && note.summary) description.setAttribute("content", note.summary);
 
+  /* Per-note SEO: canonical and Open Graph reflect the selected field note. */
+  (function updateSeo() {
+    var url = "https://himanshukumarjha.netlify.app/blog.html?note=" + i;
+    var title = (note.title || "Writing") + " | " + (PROFILE.name || "");
+    function metaSet(selector, value) {
+      var el = document.querySelector(selector);
+      if (el && value) el.setAttribute("content", value);
+    }
+    var canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.setAttribute("href", url);
+    metaSet('meta[property="og:url"]', url);
+    metaSet('meta[property="og:title"]', title);
+    metaSet('meta[property="og:description"]', note.summary);
+  })();
+
   set("brand-name", PROFILE.name);
   set("note-code", "log " + pad(i + 1) + " · " + String(note.status || "Note").toLowerCase());
   set("note-tags", (note.tags || []).join(" · "));
