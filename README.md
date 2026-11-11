@@ -42,9 +42,16 @@ That means the pipelines, storage, inference serving and observability that take
 
 ### 📈 GitHub Stats
 
+<!--
+  Stats + top-languages cards use github-readme-stats. The public instance
+  (github-readme-stats.vercel.app) is chronically rate-limited (503), so these
+  should be pointed at your own free Vercel instance once deployed - just swap
+  the host in the two img URLs below. The streak card uses the maintainer's
+  reliable self-hosted host (streak-stats.demolab.com).
+-->
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=himanshu-kr-jha&show_icons=true&theme=github_dark" alt="Himanshu's GitHub stats" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=himanshu-kr-jha&theme=github-dark-blue" alt="Himanshu's GitHub streak" />
+  <img src="https://github-readme-stats.vercel.app/api?username=himanshu-kr-jha&show_icons=true&theme=github_dark&count_private=true" alt="Himanshu's GitHub stats" />
+  <img src="https://streak-stats.demolab.com/?user=himanshu-kr-jha&theme=github-dark-blue" alt="Himanshu's GitHub streak" />
 </p>
 <p align="center">
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=himanshu-kr-jha&layout=compact&theme=github_dark" alt="Himanshu's top languages" />
