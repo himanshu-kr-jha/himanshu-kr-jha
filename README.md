@@ -43,18 +43,17 @@ That means the pipelines, storage, inference serving and observability that take
 ### 📈 GitHub Stats
 
 <!--
-  Stats + top-languages cards use github-readme-stats. The public instance
-  (github-readme-stats.vercel.app) is chronically rate-limited (503), so these
-  should be pointed at your own free Vercel instance once deployed - just swap
-  the host in the two img URLs below. The streak card uses the maintainer's
-  reliable self-hosted host (streak-stats.demolab.com).
+  Stats + top-languages cards are served from a self-hosted github-readme-stats
+  instance (github-stats-extended.vercel.app) to avoid the public instance's
+  chronic 503 rate-limiting. The streak card uses the maintainer's reliable host
+  (streak-stats.demolab.com).
 -->
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=himanshu-kr-jha&show_icons=true&theme=github_dark&count_private=true" alt="Himanshu's GitHub stats" />
+  <img src="https://github-stats-extended.vercel.app/api?username=himanshu-kr-jha&rank_icon=github&show_icons=true&include_all_commits=true&theme=dark_github" alt="Himanshu's GitHub stats" />
   <img src="https://streak-stats.demolab.com/?user=himanshu-kr-jha&theme=github-dark-blue" alt="Himanshu's GitHub streak" />
 </p>
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=himanshu-kr-jha&layout=compact&theme=github_dark" alt="Himanshu's top languages" />
+  <img src="https://github-stats-extended.vercel.app/api/top-langs?username=himanshu-kr-jha&hide_progress=true&langs_count=6&hide_values=true&theme=tokyonight" alt="Himanshu's top languages" />
 </p>
 
 ---
